@@ -13,7 +13,7 @@ To quickly start the app, make sure that you have Java 8 JDK installed. Then, ju
 ```bash
 git clone https://github.com/mvysny/vok-security-demo-v10
 cd vok-security-demo-v10
-./gradlew build web:appRun
+./gradlew build appRun
 ```
 
 The app will be running on [http://localhost:8080/](http://localhost:8080/).
