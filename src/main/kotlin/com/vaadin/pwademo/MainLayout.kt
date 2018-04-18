@@ -1,6 +1,9 @@
 package com.vaadin.pwademo
 
+import com.github.vok.framework.VaadinOnKotlin
+import com.github.vok.framework.flow.Session
 import com.github.vok.karibudsl.flow.div
+import com.github.vok.security.loggedInUserResolver
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
@@ -8,6 +11,9 @@ import com.vaadin.flow.component.icon.VaadinIcons
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
+import com.vaadin.flow.router.BeforeEnterEvent
+import com.vaadin.flow.router.BeforeEnterListener
+import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
@@ -21,7 +27,15 @@ import com.vaadin.pwademo.components.*
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
-class MainLayout : AppHeaderLayout(), RouterLayout {
+class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
+    override fun beforeEnter(event: BeforeEnterEvent) {
+        if (!Session.loginManager.isLoggedIn) {
+            event.rerouteTo(LoginView::class.java)
+        } else {
+            VaadinOnKotlin.loggedInUserResolver!!.checkPermissionsOnClass(event.navigationTarget)
+        }
+    }
+
     private val content: Div
     init {
         appHeader {
