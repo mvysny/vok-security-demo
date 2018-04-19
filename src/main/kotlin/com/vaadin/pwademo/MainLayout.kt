@@ -36,7 +36,8 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
         } else {
             // @todo move this into the vok-framework-v10 as VokSecurity.install(), and register the listener into the UI.
             // the code is not important, what's more important is the documentation
-            // also it may be necessary to check the entire Router's layout chain?
+            // also it may be necessary to check the entire Router's layout chain? Probably not - the parent layouts can not be shown
+            // on their own. Or can they? Perhaps evaluate all @Route-annotated parent layouts? Can this happen?
             VaadinOnKotlin.loggedInUserResolver!!.checkPermissionsOnClass(event.navigationTarget)
         }
     }
