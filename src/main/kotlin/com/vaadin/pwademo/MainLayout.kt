@@ -6,16 +6,16 @@ import com.github.vok.karibudsl.flow.div
 import com.github.vok.karibudsl.flow.onLeftClick
 import com.github.vok.security.AllowAllUsers
 import com.github.vok.security.loggedInUserResolver
-import com.vaadin.flow.component.Component
 import com.vaadin.flow.component.HasElement
-import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcons
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
-import com.vaadin.flow.router.*
+import com.vaadin.flow.router.BeforeEnterEvent
+import com.vaadin.flow.router.BeforeEnterObserver
+import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 import com.vaadin.pwademo.components.*
@@ -55,25 +55,11 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
             }
         }
         appDrawer {
-            navMenuItem(VaadinIcons.NEWSPAPER, "Welcome") {
-                onLeftClick {
-                    navigateTo<WelcomeView>()
-                }
-            }
-            navMenuItem(VaadinIcons.LIST, "User") {
-                onLeftClick {
-                    navigateTo<UserView>()
-                }
-            }
-            navMenuItem(VaadinIcons.COG, "Admin") {
-                onLeftClick {
-                    navigateTo<AdminView>()
-                }
-            }
-            navMenuItem(VaadinIcons.SIGN_OUT, "Log Out") {
-                onLeftClick {
-                    Session.loginManager.logout()
-                }
+            navItem(VaadinIcons.NEWSPAPER, "Welcome", WelcomeView::class.java)
+            navItem(VaadinIcons.LIST, "User", UserView::class.java)
+            navItem(VaadinIcons.COG, "Admin", AdminView::class.java)
+            navItemClickable(VaadinIcons.SIGN_OUT, "Log Out") {
+                onLeftClick { Session.loginManager.logout() }
             }
         }
         content = div {
@@ -83,18 +69,5 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
 
     override fun showRouterLayoutContent(content: HasElement) {
         this.content.element.appendChild(content.element)
-    }
-}
-
-inline fun <reified T: Component> navigateTo() {
-    UI.getCurrent().apply {
-        navigate(router.getUrl(T::class.java))
-    }
-}
-inline fun <C, reified T> navigateTo(vararg params: C) where T: Component, T: HasUrlParameter<C> {
-    require(params.isNotEmpty()) { "No parameters passed in" }
-    UI.getCurrent().apply {
-        val url: String = if (params.size == 1) router.getUrl(T::class.java, params[0]) else router.getUrl(T::class.java, params.toList())
-        navigate(url)
     }
 }

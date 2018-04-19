@@ -1,15 +1,15 @@
 package com.vaadin.pwademo.components
 
-import com.github.vok.karibudsl.flow.VaadinDsl
-import com.github.vok.karibudsl.flow.div
-import com.github.vok.karibudsl.flow.init
-import com.github.vok.karibudsl.flow.themes
+import com.github.vok.karibudsl.flow.*
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.dependency.HtmlImport
+import com.vaadin.flow.component.html.Anchor
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.Icon
 import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.router.HighlightConditions
+import com.vaadin.flow.router.RouterLink
 
 @Tag("app-header")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
@@ -61,19 +61,32 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
     }
 }
 
-// @todo when the button is clicked, hide the app-drawer!
-class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(icon)) {
-    init {
-        classNames.add("navmenuitem")
-        themes.add("large")
-    }
-    var selected: Boolean
-        get() = classNames.contains("selected")
-        set(value) { classNames.set("selected", value) }
-}
-
-// @todo replace with RouterLink: make it navigate to particular view and auto-select based on URL
-fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcons, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)
-
 // @todo extract this into a stand-alone project with two modules: the component itself, and the sample web app. The web app should be live on Heroku.
 // @todo then refactor this project and also vaadin-kotlin-pwa
+
+class ClickableAnchor : Anchor(), ClickNotifier
+
+fun (@VaadinDsl HasComponents).navItem(
+    icon: VaadinIcons? = null, text: String? = null, viewType: Class<out Component>,
+    block: (@VaadinDsl RouterLink).() -> Unit = {}
+): RouterLink =
+    routerLink(icon, text, viewType) {
+        highlightCondition = HighlightConditions.sameLocation()
+        addClassName("navmenuitem")
+        element.setAttribute("onclick", "drawer.toggle()")
+        block()
+    }
+
+fun (@VaadinDsl HasComponents).navItemClickable(
+    icon: VaadinIcons? = null, text: String? = null,
+    block: (@VaadinDsl ClickableAnchor).() -> Unit = {}
+): ClickableAnchor {
+    val link = ClickableAnchor().apply {
+        addClassName("navmenuitem")
+        element.setAttribute("onclick", "drawer.toggle()")
+    }
+    if (icon != null) link.icon(icon)
+    if (text != null) link.text(text)
+    init(link, block)
+    return link
+}

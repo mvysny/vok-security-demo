@@ -61,6 +61,7 @@ class LoginManager: Serializable {
         Session.current.close()
         // The UI is recreated by the page reload, and since there is no user in the session (since it has been cleared),
         // the UI will show the LoginView.
+        UI.getCurrent().navigate("")
         UI.getCurrent().page.reload()
     }
 }
