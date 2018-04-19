@@ -18,5 +18,6 @@ cd vok-security-demo-v10
 
 The app will be running on [http://localhost:8080/](http://localhost:8080/).
 
-@todo rest
+@todo more documentation
+
 

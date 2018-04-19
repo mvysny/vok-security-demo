@@ -61,6 +61,7 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
     }
 }
 
+// @todo when the button is clicked, hide the app-drawer!
 class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(icon)) {
     init {
         classNames.add("navmenuitem")
@@ -71,4 +72,8 @@ class NavMenuItem(icon: VaadinIcons, caption: String) : Button(caption, Icon(ico
         set(value) { classNames.set("selected", value) }
 }
 
+// @todo replace with RouterLink: make it navigate to particular view and auto-select based on URL
 fun (@VaadinDsl HasComponents).navMenuItem(icon: VaadinIcons, caption: String, block: (@VaadinDsl NavMenuItem).() -> Unit = {}) = init(NavMenuItem(icon, caption), block)
+
+// @todo extract this into a stand-alone project with two modules: the component itself, and the sample web app. The web app should be live on Heroku.
+// @todo then refactor this project and also vaadin-kotlin-pwa
