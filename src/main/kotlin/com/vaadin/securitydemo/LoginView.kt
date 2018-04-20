@@ -1,6 +1,7 @@
 package com.vaadin.securitydemo
 
 import com.github.vok.framework.flow.Session
+import com.github.vok.karibudsl.flow.content
 import com.github.vok.karibudsl.flow.text
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
@@ -23,6 +24,8 @@ class LoginView : VerticalLayout() {
     private val loginForm: LoginForm
 
     init {
+        setSizeFull(); isPadding = false; content { center() }
+
         loginForm = loginForm("VoK Security Demo") {
             text("Log in as user/user or admin/admin")
             onLogin { username, password ->
