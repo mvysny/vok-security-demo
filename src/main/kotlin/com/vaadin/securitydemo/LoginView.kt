@@ -13,16 +13,18 @@ import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 
+/**
+ * The login view which simply shows the login form full-screen. Allows the user to log in. After the user has been logged in,
+ * the page is refreshed which forces the MainLayout to reinitialize. However, now that the user is present in the session,
+ * the reroute to login view no longer happens and the MainLayout is displayed on screen properly.
+ */
 @BodySize(width = "100vw", height = "100vh")
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @Route("login")
 class LoginView : VerticalLayout() {
-
-    // @todo extract to a nice LoginForm component and move into the vok's vok-framework-v10 module
     private val loginForm: LoginForm
-
     init {
         setSizeFull(); isPadding = false; content { center() }
 
