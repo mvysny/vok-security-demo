@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.karibudsl.flow.h1
 import com.github.vok.karibudsl.flow.text

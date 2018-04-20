@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.karibudsl.flow.*
 import com.github.vok.security.AllowAllUsers
@@ -11,7 +11,6 @@ import org.intellij.lang.annotations.Language
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.TextNode
-import javax.xml.soap.Text
 
 /**
  * The welcome view of the app, visible to all users. It is a vertical layout which lays out the child components vertically.

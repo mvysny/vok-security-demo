@@ -1,4 +1,4 @@
-package com.vaadin.pwademo.components
+package com.vaadin.securitydemo.components
 
 import com.github.vok.karibudsl.flow.VaadinDsl
 import com.github.vok.karibudsl.flow.init

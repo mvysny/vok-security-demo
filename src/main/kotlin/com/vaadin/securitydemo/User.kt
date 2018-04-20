@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.framework.flow.Session
 import com.github.vok.security.simple.HasPassword

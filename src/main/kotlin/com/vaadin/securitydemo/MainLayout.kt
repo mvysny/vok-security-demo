@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.framework.VaadinOnKotlin
 import com.github.vok.framework.flow.Session
@@ -18,7 +18,7 @@ import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
-import com.vaadin.pwademo.components.*
+import com.vaadin.securitydemo.components.*
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]
@@ -28,16 +28,11 @@ import com.vaadin.pwademo.components.*
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
-@AllowAllUsers
 class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
     override fun beforeEnter(event: BeforeEnterEvent) {
         if (!Session.loginManager.isLoggedIn) {
             event.rerouteTo(LoginView::class.java)
         } else {
-            // @todo move this into the vok-framework-v10 as VokSecurity.install(), and register the listener into the UI.
-            // the code is not important, what's more important is the documentation
-            // also it may be necessary to check the entire Router's layout chain? Probably not - the parent layouts can not be shown
-            // on their own. Or can they? Perhaps evaluate all @Route-annotated parent layouts? Can this happen?
             VaadinOnKotlin.loggedInUserResolver!!.checkPermissionsOnClass(event.navigationTarget)
         }
     }

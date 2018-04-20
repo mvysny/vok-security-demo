@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.framework.sql2o.vaadin.dataProvider
 import com.github.vok.framework.sql2o.vaadin.generateFilterComponents

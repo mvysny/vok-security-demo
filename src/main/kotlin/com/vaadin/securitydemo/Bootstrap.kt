@@ -1,4 +1,4 @@
-package com.vaadin.pwademo
+package com.vaadin.securitydemo
 
 import com.github.vok.framework.VaadinOnKotlin
 import com.github.vok.framework.flow.Session
