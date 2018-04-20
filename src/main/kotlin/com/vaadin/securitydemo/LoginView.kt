@@ -27,6 +27,7 @@ class LoginView : VerticalLayout() {
         setSizeFull(); isPadding = false; content { center() }
 
         loginForm = loginForm("VoK Security Demo") {
+            classNames.add("loginform")
             text("Log in as user/user or admin/admin")
             onLogin { username, password ->
                 val user = User.findByUsername(username)
