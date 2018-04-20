@@ -23,7 +23,7 @@ class LoginView : VerticalLayout() {
     private val loginForm: LoginForm
 
     init {
-        loginForm = loginForm {
+        loginForm = loginForm("VoK Security Demo") {
             text("Log in as user/user or admin/admin")
             onLogin { username, password ->
                 val user = User.findByUsername(username)

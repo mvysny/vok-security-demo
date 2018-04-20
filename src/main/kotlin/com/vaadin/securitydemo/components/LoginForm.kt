@@ -7,7 +7,7 @@ import com.vaadin.flow.component.textfield.PasswordField
 import com.vaadin.flow.component.textfield.TextField
 import javax.validation.constraints.NotBlank
 
-class LoginForm : VerticalLayout() {
+class LoginForm(appName: String) : VerticalLayout() {
     data class UsernamePassword(@field:NotBlank var username: String = "", @field:NotBlank var password: String = "")
     private val binder = beanValidationBinder<UsernamePassword>()
     val usernameField: TextField
@@ -20,7 +20,7 @@ class LoginForm : VerticalLayout() {
 
     init {
         binder.bean = UsernamePassword()
-        h1("Welcome to vok-security-demo-v10!")
+        h1("Welcome to $appName")
         usernameField = textField("Username") {
             bind(binder).asRequired().trimmingConverter().bind(UsernamePassword::username)
         }
@@ -39,4 +39,4 @@ class LoginForm : VerticalLayout() {
     }
 }
 
-fun (@VaadinDsl HasComponents).loginForm(block: (@VaadinDsl LoginForm).() -> Unit = {}) = init(LoginForm(), block)
+fun (@VaadinDsl HasComponents).loginForm(appName: String, block: (@VaadinDsl LoginForm).() -> Unit = {}) = init(LoginForm(appName), block)
