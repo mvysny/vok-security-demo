@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/mvysny/vok-security-demo-v10.svg?branch=master)](https://travis-ci.org/mvysny/vok-security-demo-v10)
 [![Join the chat at https://gitter.im/vaadin/vaadin-on-kotlin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-on-kotlin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Heroku](https://img.shields.io/badge/cloud-Heroku-green.svg)](https://vok-security-demo-v10.herokuapp.com/)
 
 # Vaadin-on-Kotlin Security Demo for Vaadin 10
 
