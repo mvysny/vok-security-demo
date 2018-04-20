@@ -2,11 +2,9 @@ package com.vaadin.securitydemo
 
 import com.github.vok.karibudsl.flow.text
 import com.github.vok.security.AccessRejectedException
+import com.github.vok.security.AllowAll
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
-import com.vaadin.flow.router.BeforeEnterEvent
-import com.vaadin.flow.router.ErrorParameter
-import com.vaadin.flow.router.HasErrorParameter
-import com.vaadin.flow.router.PageTitle
+import com.vaadin.flow.router.*
 import org.slf4j.LoggerFactory
 import javax.servlet.http.HttpServletResponse
 
