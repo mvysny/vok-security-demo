@@ -18,6 +18,8 @@ cd vok-security-demo-v10
 
 The app will be running on [http://localhost:8080/](http://localhost:8080/).
 
+The app is running live on Heroku at [https://vok-security-demo-v10.herokuapp.com](https://vok-security-demo-v10.herokuapp.com).
+
 @todo more documentation
 
 
