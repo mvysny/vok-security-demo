@@ -1,6 +1,8 @@
 package com.vaadin.securitydemo
 
+import com.github.vok.framework.flow.LoginForm
 import com.github.vok.framework.flow.Session
+import com.github.vok.framework.flow.loginForm
 import com.github.vok.karibudsl.flow.content
 import com.github.vok.karibudsl.flow.text
 import com.vaadin.flow.component.dependency.HtmlImport
@@ -10,8 +12,6 @@ import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
-import com.vaadin.securitydemo.components.LoginForm
-import com.vaadin.securitydemo.components.loginForm
 
 @BodySize(width = "100vw", height = "100vh")
 @HtmlImport("frontend://styles.html")
