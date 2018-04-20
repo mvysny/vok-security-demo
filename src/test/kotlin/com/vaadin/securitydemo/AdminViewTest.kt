@@ -5,11 +5,11 @@ import com.github.karibu.testing.Routes
 import com.github.karibu.testing._expectNone
 import com.github.karibu.testing._get
 import com.github.mvysny.dynatest.DynaTest
+import com.github.vok.framework.flow.LoginForm
 import com.github.vok.framework.flow.Session
 import com.github.vokorm.deleteAll
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI
-import com.vaadin.securitydemo.components.LoginForm
 
 val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoutes(AccessDeniedView::class.java)
 
