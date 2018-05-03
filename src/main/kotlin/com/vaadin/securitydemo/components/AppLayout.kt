@@ -62,7 +62,7 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
 // @todo extract this into a stand-alone project with two modules: the component itself, and the sample web app. The web app should be live on Heroku.
 // @todo then refactor this project and also vaadin-kotlin-pwa
 
-class ClickableAnchor : Anchor(), ClickNotifier
+class ClickableAnchor : Anchor(), ClickNotifier<ClickableAnchor>
 
 fun (@VaadinDsl HasComponents).navItem(
     icon: VaadinIcons? = null, text: String? = null, viewType: Class<out Component>,

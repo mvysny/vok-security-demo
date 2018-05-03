@@ -26,7 +26,7 @@ class AdminView : VerticalLayout() {
             addColumnFor(User::roles)
             addColumnFor(User::hashedPassword)
 
-            generateFilterComponents(User::class)
+            appendHeaderRow().generateFilterComponents(this, User::class)
         }
     }
 }
