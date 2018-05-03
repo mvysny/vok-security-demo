@@ -9,6 +9,8 @@ import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
+import com.vaadin.flow.router.BeforeEnterEvent
+import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
@@ -23,7 +25,14 @@ import com.vaadin.flow.theme.lumo.Lumo
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @Route("login")
-class LoginView : VerticalLayout() {
+class LoginView : VerticalLayout(), BeforeEnterObserver {
+
+    override fun beforeEnter(event: BeforeEnterEvent) {
+        if (Session.loginManager.isLoggedIn) {
+            event.rerouteTo("")
+        }
+    }
+
     private val loginForm: LoginForm
     init {
         setSizeFull(); isPadding = false; content { center() }
