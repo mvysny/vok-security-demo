@@ -1,6 +1,6 @@
 package com.vaadin.securitydemo
 
-import com.github.karibu.testing.*
+import com.github.karibu.testing.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.vok.framework.flow.Session
 import com.github.vokorm.deleteAll

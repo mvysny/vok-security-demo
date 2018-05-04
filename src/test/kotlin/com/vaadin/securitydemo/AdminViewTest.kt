@@ -1,9 +1,6 @@
 package com.vaadin.securitydemo
 
-import com.github.karibu.testing.MockVaadin
-import com.github.karibu.testing.Routes
-import com.github.karibu.testing._expectNone
-import com.github.karibu.testing._get
+import com.github.karibu.testing.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.vok.framework.flow.LoginForm
 import com.github.vok.framework.flow.Session
