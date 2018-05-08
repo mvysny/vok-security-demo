@@ -2,15 +2,9 @@ package com.vaadin.securitydemo
 
 import com.github.vok.karibudsl.flow.*
 import com.github.vok.security.AllowAllUsers
-import com.vaadin.flow.component.HasComponents
-import com.vaadin.flow.component.Html
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.server.Version
-import org.intellij.lang.annotations.Language
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
-import org.jsoup.nodes.TextNode
 
 /**
  * The welcome view of the app, visible to all users. It is a vertical layout which lays out the child components vertically.
@@ -41,12 +35,3 @@ class WelcomeView : VerticalLayout() {
 }
 
 val jvmVersion: String get() = System.getProperty("java.version")
-fun (@VaadinDsl HasComponents).html(@Language("html") html: String) {
-    val doc: Element = Jsoup.parse(html).body()
-    for (childNode in doc.childNodes()) {
-        when(childNode) {
-            is TextNode -> text(childNode.text())
-            is Element -> add(Html(childNode.outerHtml()))
-        }
-    }
-}
