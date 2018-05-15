@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcons
 import com.vaadin.flow.router.HighlightConditions
 import com.vaadin.flow.router.RouterLink
+import kotlin.reflect.KClass
 
 @Tag("app-header")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
@@ -65,7 +66,7 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
 class ClickableAnchor : Anchor(), ClickNotifier<ClickableAnchor>
 
 fun (@VaadinDsl HasComponents).navItem(
-    icon: VaadinIcons? = null, text: String? = null, viewType: Class<out Component>,
+    icon: VaadinIcons? = null, text: String? = null, viewType: KClass<out Component>,
     block: (@VaadinDsl RouterLink).() -> Unit = {}
 ): RouterLink =
     routerLink(icon, text, viewType) {

@@ -50,9 +50,9 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
             }
         }
         appDrawer {
-            navItem(VaadinIcons.NEWSPAPER, "Welcome", WelcomeView::class.java)
-            navItem(VaadinIcons.LIST, "User", UserView::class.java)
-            navItem(VaadinIcons.COG, "Admin", AdminView::class.java)
+            navItem(VaadinIcons.NEWSPAPER, "Welcome", WelcomeView::class)
+            navItem(VaadinIcons.LIST, "User", UserView::class)
+            navItem(VaadinIcons.COG, "Admin", AdminView::class)
             navItemClickable(VaadinIcons.SIGN_OUT, "Log Out") {
                 onLeftClick { Session.loginManager.logout() }
             }
