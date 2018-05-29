@@ -4,12 +4,11 @@ import com.github.vok.framework.VaadinOnKotlin
 import com.github.vok.framework.flow.Session
 import com.github.vok.karibudsl.flow.div
 import com.github.vok.karibudsl.flow.onLeftClick
-import com.github.vok.security.AllowAllUsers
 import com.github.vok.security.loggedInUserResolver
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
@@ -41,8 +40,8 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
     init {
         appHeader {
             appToolbar {
-                title.text = "Vaadin Kotlin PWA Demo"
-                paperIconButton(VaadinIcons.FILE_REMOVE) {
+                title.text = "Vaadin Kotlin Security Demo"
+                paperIconButton(VaadinIcon.FILE_REMOVE) {
                     addClickListener {
                         Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
                     }
@@ -50,10 +49,10 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
             }
         }
         appDrawer {
-            navItem(VaadinIcons.NEWSPAPER, "Welcome", WelcomeView::class)
-            navItem(VaadinIcons.LIST, "User", UserView::class)
-            navItem(VaadinIcons.COG, "Admin", AdminView::class)
-            navItemClickable(VaadinIcons.SIGN_OUT, "Log Out") {
+            navItem(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
+            navItem(VaadinIcon.LIST, "User", UserView::class)
+            navItem(VaadinIcon.COG, "Admin", AdminView::class)
+            navItemClickable(VaadinIcon.SIGN_OUT, "Log Out") {
                 onLeftClick { Session.loginManager.logout() }
             }
         }

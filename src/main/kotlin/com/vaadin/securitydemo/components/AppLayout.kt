@@ -5,7 +5,7 @@ import com.vaadin.flow.component.*
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Anchor
 import com.vaadin.flow.component.html.Div
-import com.vaadin.flow.component.icon.VaadinIcons
+import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.router.HighlightConditions
 import com.vaadin.flow.router.RouterLink
 import kotlin.reflect.KClass
@@ -26,7 +26,7 @@ open class AppToolbar : Component(), HasComponents {
     val title: Div
 
     init {
-        paperIconButton(VaadinIcons.MENU) {
+        paperIconButton(VaadinIcon.MENU) {
             element.setAttribute("onclick", "drawer.toggle()")
         }
         title = div {
@@ -66,7 +66,7 @@ open class AppHeaderLayout : Component(), HasComponents, HasSize {
 class ClickableAnchor : Anchor(), ClickNotifier<ClickableAnchor>
 
 fun (@VaadinDsl HasComponents).navItem(
-    icon: VaadinIcons? = null, text: String? = null, viewType: KClass<out Component>,
+    icon: VaadinIcon? = null, text: String? = null, viewType: KClass<out Component>,
     block: (@VaadinDsl RouterLink).() -> Unit = {}
 ): RouterLink =
     routerLink(icon, text, viewType) {
@@ -77,7 +77,7 @@ fun (@VaadinDsl HasComponents).navItem(
     }
 
 fun (@VaadinDsl HasComponents).navItemClickable(
-    icon: VaadinIcons? = null, text: String? = null,
+    icon: VaadinIcon? = null, text: String? = null,
     block: (@VaadinDsl ClickableAnchor).() -> Unit = {}
 ): ClickableAnchor {
     val link = ClickableAnchor().apply {
