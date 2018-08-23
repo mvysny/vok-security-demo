@@ -56,7 +56,7 @@ dependencies {
 
     // db
     compile 'org.flywaydb:flyway-core:5.0.7'
-    compile 'com.h2database:h2:1.4.196'
+    compile 'com.h2database:h2:1.4.197'
 
     // test support
     testCompile "com.github.kaributesting:karibu-testing-v10:0.4.15"
