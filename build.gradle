@@ -1,6 +1,6 @@
 buildscript {
     ext.vaadinonkotlin_version = '0.4.13'
-    ext.vaadin10_version = '10.0.4'
+    ext.vaadin10_version = '10.0.5'
 }
 
 plugins {
@@ -17,7 +17,6 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url 'https://maven.vaadin.com/vaadin-addons' }
-    maven { url 'https://maven.vaadin.com/vaadin-prereleases' }
     maven { url "https://dl.bintray.com/mvysny/vaadin-on-kotlin" }
     maven { url "https://dl.bintray.com/mvysny/github" }
 }
@@ -63,7 +62,7 @@ dependencies {
     testCompile "com.github.mvysny.dynatest:dynatest:0.9"
 
     // heroku app runner
-    testRuntime 'com.github.jsimone:webapp-runner:8.5.30.0'
+    testRuntime 'com.github.jsimone:webapp-runner:9.0.11.0'
 }
 
 compileKotlin {
