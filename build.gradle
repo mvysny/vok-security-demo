@@ -1,5 +1,5 @@
 buildscript {
-    ext.vaadinonkotlin_version = '0.4.12'
+    ext.vaadinonkotlin_version = '0.4.13'
     ext.vaadin10_version = '10.0.4'
 }
 
@@ -55,12 +55,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     // db
-    compile 'org.flywaydb:flyway-core:5.0.7'
+    compile 'org.flywaydb:flyway-core:5.1.4'
     compile 'com.h2database:h2:1.4.197'
 
     // test support
-    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.15"
-    testCompile "com.github.mvysny.dynatest:dynatest:0.8"
+    testCompile "com.github.kaributesting:karibu-testing-v10:0.4.16"
+    testCompile "com.github.mvysny.dynatest:dynatest:0.9"
 
     // heroku app runner
     testRuntime 'com.github.jsimone:webapp-runner:8.5.30.0'

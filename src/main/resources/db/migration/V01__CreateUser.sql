@@ -5,4 +5,4 @@ create table user (
   roles varchar(400) not null
 );
 create unique index on user(username);
-<
+
