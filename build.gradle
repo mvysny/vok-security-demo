@@ -1,5 +1,5 @@
 buildscript {
-    ext.vaadinonkotlin_version = '0.4.13'
+    ext.vaadinonkotlin_version = '0.4.15'
     ext.vaadin10_version = '10.0.5'
 }
 
