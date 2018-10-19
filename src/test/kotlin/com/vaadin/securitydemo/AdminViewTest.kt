@@ -15,7 +15,6 @@ val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoute
  * Mocks the UI and logs in given user.
  */
 fun login(username: String) {
-    MockVaadin.setup(routes)
     Session.loginManager.login(User.findByUsername(username)!!)
     UI.getCurrent().page.reload()
     // check that there is no LoginForm and everything is prepared
@@ -30,6 +29,8 @@ fun login(username: String) {
 class AdminViewTest : DynaTest({
     beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
+    beforeEach { MockVaadin.setup(routes) }
+    afterEach { MockVaadin.tearDown() }
 
     test("Admin should see AdminView properly") {
         login("admin")
