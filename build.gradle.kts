@@ -1,15 +1,15 @@
-buildscript {
-    ext.vaadinonkotlin_version = '0.5.1'
-    ext.vaadin10_version = '11.0.1'
-}
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val vaadinonkotlin_version = "0.5.1"
+val vaadin10_version = "11.0.1"
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.2.71"
+    kotlin("jvm") version "1.2.71"
     id("org.gretty") version "2.2.0"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"  // remove when https://github.com/gradle/gradle/issues/4417 is fixed
+    war
 }
-
-apply plugin: "war"
 
 defaultTasks("clean", "build")
 
@@ -27,12 +27,18 @@ dependencyManagement {
     imports { mavenBom("com.vaadin:vaadin-bom:$vaadin10_version") }
 }
 
-test {
+val staging by configurations.creating
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<Test> {
     useJUnitPlatform()
-        testLogging {
-            // to see the exceptions of failed tests in Travis-CI console.
-            exceptionFormat 'full'
-        }
+    testLogging {
+        // to see the exceptions of failed tests in Travis-CI console.
+        exceptionFormat = TestExceptionFormat.FULL
+    }
 }
 
 dependencies {
@@ -60,27 +66,18 @@ dependencies {
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.11")
 
     // heroku app runner
-    testRuntime("com.github.jsimone:webapp-runner:9.0.11.0")
-}
-
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    staging("com.github.jsimone:webapp-runner:9.0.11.0")
 }
 
 // Heroku
-task stage(dependsOn: ['build'])
-task copyToLib(type: Copy) {
-    into "$buildDir/server"
-    from(configurations.testRuntime) {
-        include "webapp-runner*"
+tasks {
+    val copyToLib by registering(Copy::class) {
+        into("$buildDir/server")
+        from(staging) {
+            include("webapp-runner*")
+        }
+    }
+    val stage by registering {
+        dependsOn("build", copyToLib)
     }
 }
-
-stage.dependsOn(copyToLib)
