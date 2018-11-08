@@ -24,7 +24,7 @@ class MyUITest : DynaTest({
         _get<PasswordField> { caption = "Password" }._value = "invalidpass"
         _get<Button> { caption = "Login" }._click()
         expect(false) { Session.loginManager.isLoggedIn }
-        expect("No such user") { _get<TextField> { caption = "Username" }.errorMessage }
+        expect("No such user or invalid password") { _get<TextField> { caption = "Username" }.errorMessage }
     }
 
     test("successful login") {

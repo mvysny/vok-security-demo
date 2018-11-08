@@ -47,10 +47,7 @@ class Bootstrap: ServletContextListener {
         // setup security
         VaadinOnKotlin.loggedInUserResolver = object : LoggedInUserResolver {
             override fun isLoggedIn(): Boolean = Session.loginManager.isLoggedIn
-            override fun getCurrentUserRoles(): Set<String> {
-                val roles = Session.loginManager.user?.roles ?: ""
-                return roles.split(",").toSet()
-            }
+            override fun getCurrentUserRoles(): Set<String> = Session.loginManager.getCurrentUserRoles()
         }
         User(username = "admin", roles = "admin,user").apply { setPassword("admin"); save() }
         User(username = "user", roles = "user").apply { setPassword("user"); save() }

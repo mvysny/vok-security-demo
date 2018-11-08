@@ -8,6 +8,7 @@ import com.github.vok.karibudsl.flow.navigateToView
 import com.github.vokorm.deleteAll
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI
+import kotlin.test.expect
 
 val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoutes(AccessDeniedView::class.java)
 
@@ -15,7 +16,7 @@ val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoute
  * Mocks the UI and logs in given user.
  */
 fun login(username: String) {
-    Session.loginManager.login(User.findByUsername(username)!!)
+    expect(true) { Session.loginManager.login(username, username) }
     UI.getCurrent().page.reload()
     // check that there is no LoginForm and everything is prepared
     _expectNone<LoginForm>()

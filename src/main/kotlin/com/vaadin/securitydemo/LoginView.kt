@@ -41,15 +41,11 @@ class LoginView : VerticalLayout(), BeforeEnterObserver {
             classNames.add("loginform")
             text("Log in as user/user or admin/admin")
             onLogin { username, password ->
-                val user = User.findByUsername(username)
-                if (user == null) {
+                if (!Session.loginManager.login(username, password)) {
                     usernameField.isInvalid = true
-                    usernameField.errorMessage = "No such user"
-                } else if (!user.passwordMatches(password)) {
+                    usernameField.errorMessage = "No such user or invalid password"
                     passwordField.isInvalid = true
-                    passwordField.errorMessage = "Incorrect password"
-                } else {
-                    Session.loginManager.login(user)
+                    passwordField.errorMessage = "No such user or invalid password"
                 }
             }
         }
