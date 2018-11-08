@@ -1,10 +1,9 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.framework.VaadinOnKotlin
 import com.github.vok.framework.flow.Session
+import com.github.vok.framework.flow.VokSecurity
 import com.github.vok.karibudsl.flow.div
 import com.github.vok.karibudsl.flow.onLeftClick
-import com.github.vok.security.loggedInUserResolver
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
@@ -32,7 +31,7 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
         if (!Session.loginManager.isLoggedIn) {
             event.rerouteTo(LoginView::class.java)
         } else {
-            VaadinOnKotlin.loggedInUserResolver!!.checkPermissionsOnClass(event.navigationTarget)
+            VokSecurity.checkPermissionsOfView(event.navigationTarget)
         }
     }
 
