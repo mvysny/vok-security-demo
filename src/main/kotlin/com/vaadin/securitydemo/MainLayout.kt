@@ -2,8 +2,8 @@ package com.vaadin.securitydemo
 
 import com.github.vok.framework.flow.Session
 import com.github.vok.framework.flow.VokSecurity
-import com.github.vok.karibudsl.flow.div
-import com.github.vok.karibudsl.flow.onLeftClick
+import com.github.mvysny.karibudsl.v10.div
+import com.github.mvysny.karibudsl.v10.onLeftClick
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div

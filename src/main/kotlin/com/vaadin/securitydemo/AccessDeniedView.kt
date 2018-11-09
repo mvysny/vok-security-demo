@@ -1,6 +1,6 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.karibudsl.flow.text
+import com.github.mvysny.karibudsl.v10.text
 import com.github.vok.security.AccessRejectedException
 import com.github.vok.security.AllowAll
 import com.vaadin.flow.component.orderedlayout.VerticalLayout

@@ -4,7 +4,7 @@ import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.vok.framework.flow.LoginForm
 import com.github.vok.framework.flow.Session
-import com.github.vok.karibudsl.flow.navigateToView
+import com.github.mvysny.karibudsl.v10.navigateToView
 import com.github.vokorm.deleteAll
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI

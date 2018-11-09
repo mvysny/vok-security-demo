@@ -1,6 +1,6 @@
 package com.vaadin.securitydemo.components
 
-import com.github.vok.karibudsl.flow.*
+import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.*
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Anchor

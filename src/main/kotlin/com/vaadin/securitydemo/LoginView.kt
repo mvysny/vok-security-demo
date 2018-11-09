@@ -3,8 +3,8 @@ package com.vaadin.securitydemo
 import com.github.vok.framework.flow.LoginForm
 import com.github.vok.framework.flow.Session
 import com.github.vok.framework.flow.loginForm
-import com.github.vok.karibudsl.flow.content
-import com.github.vok.karibudsl.flow.text
+import com.github.mvysny.karibudsl.v10.content
+import com.github.mvysny.karibudsl.v10.text
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize

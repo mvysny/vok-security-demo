@@ -1,6 +1,6 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.karibudsl.flow.*
+import com.github.mvysny.karibudsl.v10.*
 import com.github.vok.security.AllowAllUsers
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
