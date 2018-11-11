@@ -1,7 +1,5 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.framework.flow.Session
-import com.github.vok.framework.flow.VokSecurity
 import com.github.mvysny.karibudsl.v10.div
 import com.github.mvysny.karibudsl.v10.onLeftClick
 import com.vaadin.flow.component.HasElement
@@ -17,6 +15,8 @@ import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
 import com.vaadin.securitydemo.components.*
+import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin10.VokSecurity
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]

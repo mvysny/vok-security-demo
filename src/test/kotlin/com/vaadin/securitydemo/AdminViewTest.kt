@@ -2,12 +2,12 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
-import com.github.vok.framework.flow.LoginForm
-import com.github.vok.framework.flow.Session
 import com.github.mvysny.karibudsl.v10.navigateToView
 import com.github.vokorm.deleteAll
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI
+import eu.vaadinonkotlin.vaadin10.LoginForm
+import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
 
 val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoutes(AccessDeniedView::class.java)

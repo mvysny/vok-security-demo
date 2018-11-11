@@ -1,11 +1,11 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.framework.VaadinOnKotlin
-import com.github.vok.framework.flow.Session
-import com.github.vok.framework.sql2o.dataSource
-import com.github.vok.framework.sql2o.dataSourceConfig
-import com.github.vok.security.LoggedInUserResolver
-import com.github.vok.security.loggedInUserResolver
+import eu.vaadinonkotlin.VaadinOnKotlin
+import eu.vaadinonkotlin.security.LoggedInUserResolver
+import eu.vaadinonkotlin.security.loggedInUserResolver
+import eu.vaadinonkotlin.sql2o.dataSource
+import eu.vaadinonkotlin.sql2o.dataSourceConfig
+import eu.vaadinonkotlin.vaadin10.Session
 import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.slf4j.LoggerFactory

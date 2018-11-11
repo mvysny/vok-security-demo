@@ -2,11 +2,11 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
-import com.github.vok.framework.flow.Session
 import com.github.vokorm.deleteAll
 import com.vaadin.flow.component.button.Button
 import com.vaadin.flow.component.textfield.PasswordField
 import com.vaadin.flow.component.textfield.TextField
+import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
 
 /**

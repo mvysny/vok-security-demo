@@ -1,8 +1,5 @@
 package com.vaadin.securitydemo
 
-import com.github.vok.framework.flow.LoginForm
-import com.github.vok.framework.flow.Session
-import com.github.vok.framework.flow.loginForm
 import com.github.mvysny.karibudsl.v10.content
 import com.github.mvysny.karibudsl.v10.text
 import com.vaadin.flow.component.dependency.HtmlImport
@@ -14,6 +11,9 @@ import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
+import eu.vaadinonkotlin.vaadin10.LoginForm
+import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin10.loginForm
 
 /**
  * The login view which simply shows the login form full-screen. Allows the user to log in. After the user has been logged in,
