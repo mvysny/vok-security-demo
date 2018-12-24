@@ -1,5 +1,6 @@
 package com.vaadin.securitydemo
 
+import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.div
 import com.github.mvysny.karibudsl.v10.onLeftClick
 import com.vaadin.flow.component.HasElement
@@ -26,7 +27,7 @@ import eu.vaadinonkotlin.vaadin10.VokSecurity
 @HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
-class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
+class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
     override fun beforeEnter(event: BeforeEnterEvent) {
         if (!Session.loginManager.isLoggedIn) {
             event.rerouteTo(LoginView::class.java)
@@ -35,28 +36,30 @@ class MainLayout : AppHeaderLayout(), RouterLayout, BeforeEnterObserver {
         }
     }
 
-    private val content: Div
-    init {
-        appHeader {
-            appToolbar {
-                title.text = "Vaadin Kotlin Security Demo"
-                paperIconButton(VaadinIcon.FILE_REMOVE) {
-                    addClickListener {
-                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
+    private lateinit var content: Div
+    private val root = ui {
+        appHeaderLayout {
+            appHeader {
+                appToolbar {
+                    title.text = "Vaadin Kotlin Security Demo"
+                    paperIconButton(VaadinIcon.FILE_REMOVE) {
+                        addClickListener {
+                            Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
+                        }
                     }
                 }
             }
-        }
-        appDrawer {
-            navItem(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
-            navItem(VaadinIcon.LIST, "User", UserView::class)
-            navItem(VaadinIcon.COG, "Admin", AdminView::class)
-            navItemClickable(VaadinIcon.SIGN_OUT, "Log Out") {
-                onLeftClick { Session.loginManager.logout() }
+            appDrawer {
+                navItem(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
+                navItem(VaadinIcon.LIST, "User", UserView::class)
+                navItem(VaadinIcon.COG, "Admin", AdminView::class)
+                navItemClickable(VaadinIcon.SIGN_OUT, "Log Out") {
+                    onLeftClick { Session.loginManager.logout() }
+                }
             }
-        }
-        content = div {
-            setSizeFull(); classNames.add("app-content")
+            content = div {
+                setSizeFull(); classNames.add("app-content")
+            }
         }
     }
 

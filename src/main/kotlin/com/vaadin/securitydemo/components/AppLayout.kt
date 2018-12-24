@@ -12,17 +12,18 @@ import kotlin.reflect.KClass
 
 @Tag("app-header")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppHeader : Component(), HasComponents, HasSize {
+class AppHeader : Component(), HasComponents, HasSize {
     init {
         element.setAttribute("fixed", "")
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appHeader(block: (@VaadinDsl AppHeader).() -> Unit = {}) = init(AppHeader(), block)
 
 @Tag("app-toolbar")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppToolbar : Component(), HasComponents {
+class AppToolbar : Component(), HasComponents {
     val title: Div
 
     init {
@@ -35,6 +36,7 @@ open class AppToolbar : Component(), HasComponents {
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appToolbar(block: (@VaadinDsl AppToolbar).() -> Unit = {}) = init(AppToolbar(), block)
 
 @Tag("app-drawer")
@@ -46,6 +48,7 @@ class AppDrawer : Component(), HasComponents {
     }
 }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).appDrawer(block: (@VaadinDsl AppDrawer).() -> Unit = {}) = init(AppDrawer(), block)
 
 /**
@@ -54,17 +57,21 @@ fun (@VaadinDsl HasComponents).appDrawer(block: (@VaadinDsl AppDrawer).() -> Uni
  */
 @Tag("app-header-layout")
 @HtmlImport("frontend://bower_components/app-layout/app-layout.html")
-open class AppHeaderLayout : Component(), HasComponents, HasSize {
+class AppHeaderLayout : Component(), HasComponents, HasSize {
     init {
         setSizeFull(); element.setAttribute("fullbleed", "")
     }
 }
+
+@VaadinDsl
+fun (@VaadinDsl HasComponents).appHeaderLayout(block: (@VaadinDsl AppHeaderLayout).() -> Unit = {}) = init(AppHeaderLayout(), block)
 
 // @todo extract this into a stand-alone project with two modules: the component itself, and the sample web app. The web app should be live on Heroku.
 // @todo then refactor this project and also vaadin-kotlin-pwa
 
 class ClickableAnchor : Anchor(), ClickNotifier<ClickableAnchor>
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).navItem(
     icon: VaadinIcon? = null, text: String? = null, viewType: KClass<out Component>,
     block: (@VaadinDsl RouterLink).() -> Unit = {}
@@ -76,6 +83,7 @@ fun (@VaadinDsl HasComponents).navItem(
         block()
     }
 
+@VaadinDsl
 fun (@VaadinDsl HasComponents).navItemClickable(
     icon: VaadinIcon? = null, text: String? = null,
     block: (@VaadinDsl ClickableAnchor).() -> Unit = {}

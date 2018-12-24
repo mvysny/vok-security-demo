@@ -1,7 +1,9 @@
 package com.vaadin.securitydemo
 
+import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.content
 import com.github.mvysny.karibudsl.v10.text
+import com.github.mvysny.karibudsl.v10.verticalLayout
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.component.page.BodySize
@@ -25,7 +27,7 @@ import eu.vaadinonkotlin.vaadin10.loginForm
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @Route("login")
-class LoginView : VerticalLayout(), BeforeEnterObserver {
+class LoginView : KComposite(), BeforeEnterObserver {
 
     override fun beforeEnter(event: BeforeEnterEvent) {
         if (Session.loginManager.isLoggedIn) {
@@ -33,19 +35,21 @@ class LoginView : VerticalLayout(), BeforeEnterObserver {
         }
     }
 
-    private val loginForm: LoginForm
-    init {
-        setSizeFull(); isPadding = false; content { center() }
+    private lateinit var loginForm: LoginForm
+    private val root = ui {
+        verticalLayout {
+            setSizeFull(); isPadding = false; content { center() }
 
-        loginForm = loginForm("VoK Security Demo") {
-            classNames.add("loginform")
-            text("Log in as user/user or admin/admin")
-            onLogin { username, password ->
-                if (!Session.loginManager.login(username, password)) {
-                    usernameField.isInvalid = true
-                    usernameField.errorMessage = "No such user or invalid password"
-                    passwordField.isInvalid = true
-                    passwordField.errorMessage = "No such user or invalid password"
+            loginForm = loginForm("VoK Security Demo") {
+                classNames.add("loginform")
+                text("Log in as user/user or admin/admin")
+                onLogin { username, password ->
+                    if (!Session.loginManager.login(username, password)) {
+                        usernameField.isInvalid = true
+                        usernameField.errorMessage = "No such user or invalid password"
+                        passwordField.isInvalid = true
+                        passwordField.errorMessage = "No such user or invalid password"
+                    }
                 }
             }
         }

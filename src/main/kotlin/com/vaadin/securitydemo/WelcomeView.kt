@@ -17,19 +17,21 @@ import eu.vaadinonkotlin.security.AllowAllUsers
  */
 @Route("", layout = MainLayout::class)
 @AllowAllUsers
-class WelcomeView : VerticalLayout() {
-    init {
-        setSizeFull(); isPadding = false
-        content { align(center, middle) }
-
+class WelcomeView : KComposite() {
+    private val root = ui {
         verticalLayout {
+            setSizeFull(); isPadding = false
             content { align(center, middle) }
-            isMargin = false; isSpacing = true
-            h1("Yay! You're on Vaadin-on-Kotlin!")
-            text("This is a welcome view for all users; all logged-in users can see this content")
-            div { html("<strong>Vaadin version: </strong> ${Version.getFullVersion()}") }
-            div { html("<strong>Kotlin version: </strong> ${KotlinVersion.CURRENT}") }
-            div { html("<strong>JVM version: </strong> $jvmVersion") }
+
+            verticalLayout {
+                content { align(center, middle) }
+                isMargin = false; isSpacing = true
+                h1("Yay! You're on Vaadin-on-Kotlin!")
+                text("This is a welcome view for all users; all logged-in users can see this content")
+                div { html("<strong>Vaadin version: </strong> ${Version.getFullVersion()}") }
+                div { html("<strong>Kotlin version: </strong> ${KotlinVersion.CURRENT}") }
+                div { html("<strong>JVM version: </strong> $jvmVersion") }
+            }
         }
     }
 }
