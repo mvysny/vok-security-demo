@@ -61,7 +61,7 @@ dependencies {
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.13")
 
     // heroku app runner
-    staging("com.github.jsimone:webapp-runner:9.0.11.0")
+    staging("com.github.jsimone:webapp-runner:9.0.14.0")
 }
 
 // Heroku
