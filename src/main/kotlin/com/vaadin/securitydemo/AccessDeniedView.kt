@@ -16,7 +16,7 @@ class AccessDeniedView : KComposite(), HasErrorParameter<AccessRejectedException
     }
     override fun setErrorParameter(event: BeforeEnterEvent, parameter: ErrorParameter<AccessRejectedException>): Int {
         log.error("Access denied", parameter.exception)
-        (content as VerticalLayout).text("Access denied: ${parameter.exception.message}")  // @todo replace with root
+        root.text("Access denied: ${parameter.exception.message}")
         return HttpServletResponse.SC_FORBIDDEN
     }
     companion object {
