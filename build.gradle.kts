@@ -5,7 +5,7 @@ val vaadinonkotlin_version = "0.7.0"
 val vaadin10_version = "13.0.0.beta1"
 
 plugins {
-    kotlin("jvm") version "1.3.11"
+    kotlin("jvm") version "1.3.21"
     id("org.gretty") version "2.2.0"
     war
 }
@@ -60,7 +60,7 @@ dependencies {
 
     // test support
     testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.2")
-    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.14")
+    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
 
     // heroku app runner
     staging("com.github.jsimone:webapp-runner:9.0.14.0")
