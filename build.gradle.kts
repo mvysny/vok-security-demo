@@ -2,10 +2,10 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.7.1"
-val vaadin10_version = "13.0.2"
+val vaadin10_version = "13.0.5"
 
 plugins {
-    kotlin("jvm") version "1.3.21"
+    kotlin("jvm") version "1.3.31"
     id("org.gretty") version "2.2.0"
     war
 }
@@ -14,8 +14,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    jcenter() // temporary because of VOK
-    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases/") }  // because of Vaadin 13.0.0.beta1
 }
 
 gretty {
@@ -59,7 +57,7 @@ dependencies {
     compile("com.h2database:h2:1.4.198")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.4")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.6")
     testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
 
     // heroku app runner
