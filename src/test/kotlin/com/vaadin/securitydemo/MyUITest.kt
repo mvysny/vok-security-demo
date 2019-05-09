@@ -13,10 +13,7 @@ import kotlin.test.expect
  * Uses the [Karibu-Testing](https://github.com/mvysny/karibu-testing) library to test Vaadin-based apps.
  */
 class MyUITest : DynaTest({
-    beforeGroup { Bootstrap().contextInitialized(null) }
-    afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
-    beforeEach { MockVaadin.setup(routes) }
-    afterEach { MockVaadin.tearDown() }
+    usingApp()
 
     test("unsuccessful login") {
         _get<LoginView>() // check that initially the LoginView is displayed

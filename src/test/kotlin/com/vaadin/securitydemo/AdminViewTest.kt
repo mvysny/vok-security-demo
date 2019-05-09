@@ -1,5 +1,6 @@
 package com.vaadin.securitydemo
 
+import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.karibudsl.v10.navigateToView
@@ -9,8 +10,6 @@ import com.vaadin.flow.component.UI
 import eu.vaadinonkotlin.vaadin10.LoginForm
 import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
-
-val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo").addErrorRoutes(AccessDeniedView::class.java)
 
 /**
  * Mocks the UI and logs in given user.
@@ -28,10 +27,7 @@ fun login(username: String) {
  * Uses the [Karibu-Testing](https://github.com/mvysny/karibu-testing) library to test Vaadin-based apps.
  */
 class AdminViewTest : DynaTest({
-    beforeGroup { Bootstrap().contextInitialized(null) }
-    afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
-    beforeEach { MockVaadin.setup(routes) }
-    afterEach { MockVaadin.tearDown() }
+    usingApp()
 
     test("Admin should see AdminView properly") {
         login("admin")
@@ -47,3 +43,14 @@ class AdminViewTest : DynaTest({
         _get<AccessDeniedView>()._get<Text> { text = "Access denied: Can not access AdminView, you are not admin" }
     }
 })
+
+fun DynaNodeGroup.usingApp() {
+    lateinit var routes: Routes
+    beforeGroup {
+        routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
+        Bootstrap().contextInitialized(null)
+    }
+    afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
+    beforeEach { MockVaadin.setup(routes) }
+    afterEach { MockVaadin.tearDown() }
+}
