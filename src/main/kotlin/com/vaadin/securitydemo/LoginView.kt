@@ -1,11 +1,10 @@
 package com.vaadin.securitydemo
 
-import com.github.mvysny.karibudsl.v10.KComposite
-import com.github.mvysny.karibudsl.v10.content
-import com.github.mvysny.karibudsl.v10.text
-import com.github.mvysny.karibudsl.v10.verticalLayout
+import com.github.mvysny.karibudsl.v10.*
+import com.vaadin.flow.component.HasComponents
 import com.vaadin.flow.component.dependency.HtmlImport
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
+import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.flow.component.login.LoginI18n
 import com.vaadin.flow.component.page.BodySize
 import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.BeforeEnterEvent
@@ -13,9 +12,7 @@ import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
-import eu.vaadinonkotlin.vaadin10.LoginForm
 import eu.vaadinonkotlin.vaadin10.Session
-import eu.vaadinonkotlin.vaadin10.loginForm
 
 /**
  * The login view which simply shows the login form full-screen. Allows the user to log in. After the user has been logged in,
@@ -40,18 +37,28 @@ class LoginView : KComposite(), BeforeEnterObserver {
         verticalLayout {
             setSizeFull(); isPadding = false; content { center() }
 
-            loginForm = loginForm("VoK Security Demo") {
-                classNames.add("loginform")
-                text("Log in as user/user or admin/admin")
-                onLogin { username, password ->
-                    if (!Session.loginManager.login(username, password)) {
-                        usernameField.isInvalid = true
-                        usernameField.errorMessage = "No such user or invalid password"
-                        passwordField.isInvalid = true
-                        passwordField.errorMessage = "No such user or invalid password"
+            val loginI18n: LoginI18n = loginI18n {
+                header.title = "VoK Security Demo"
+                additionalInformation = "Log in as user/user or admin/admin"
+            }
+            loginForm = loginForm(loginI18n) {
+                addLoginListener { e ->
+                    if (!Session.loginManager.login(e.username, e.password)) {
+                        isError = true
                     }
                 }
             }
         }
     }
+}
+
+// @todo remove these once Karibu-DSL 0.7.2 is released
+fun (@VaadinDsl HasComponents).loginForm(
+        loginI18n: LoginI18n = LoginI18n.createDefault(),
+        block: (@VaadinDsl LoginForm).() -> Unit = {}
+): LoginForm = init(LoginForm(loginI18n), block)
+
+fun loginI18n(block: LoginI18n.()->Unit): LoginI18n = LoginI18n.createDefault().apply {
+    header = LoginI18n.Header()
+    block()
 }

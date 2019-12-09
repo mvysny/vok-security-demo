@@ -1,11 +1,10 @@
 package com.vaadin.securitydemo
 
-import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
-import com.github.vokorm.deleteAll
-import com.vaadin.flow.component.button.Button
-import com.vaadin.flow.component.textfield.PasswordField
-import com.vaadin.flow.component.textfield.TextField
+import com.github.mvysny.kaributesting.v10._expectNone
+import com.github.mvysny.kaributesting.v10._get
+import com.github.mvysny.kaributesting.v10._login
+import com.vaadin.flow.component.login.LoginForm
 import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
 
@@ -17,18 +16,14 @@ class MyUITest : DynaTest({
 
     test("unsuccessful login") {
         _get<LoginView>() // check that initially the LoginView is displayed
-        _get<TextField> { caption = "Username" }._value = "invaliduser"
-        _get<PasswordField> { caption = "Password" }._value = "invalidpass"
-        _get<Button> { caption = "Login" }._click()
+        _get<LoginForm>()._login("invaliduser", "invaliduser")
         expect(false) { Session.loginManager.isLoggedIn }
-        expect("No such user or invalid password") { _get<TextField> { caption = "Username" }.errorMessage }
+        expect(true) { _get<LoginForm>().isError }
     }
 
     test("successful login") {
         _get<LoginView>() // check that initially the LoginView is displayed
-        _get<TextField> { caption = "Username" }._value = "user"
-        _get<PasswordField> { caption = "Password" }._value = "user"
-        _get<Button> { caption = "Login" }._click()
+        _get<LoginForm>()._login("user", "user")
         expect(true) { Session.loginManager.isLoggedIn }
         _expectNone<LoginView>()
         // after successful login the WelcomeView should be displayed
