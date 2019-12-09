@@ -1,13 +1,15 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.dynatest.DynaNodeGroup
-import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.karibudsl.v10.navigateToView
-import com.github.vokorm.deleteAll
+import com.github.mvysny.kaributesting.v10.MockVaadin
+import com.github.mvysny.kaributesting.v10.Routes
+import com.github.mvysny.kaributesting.v10._expectNone
+import com.github.mvysny.kaributesting.v10._get
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI
-import eu.vaadinonkotlin.vaadin10.LoginForm
+import com.vaadin.flow.component.login.LoginForm
 import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
 

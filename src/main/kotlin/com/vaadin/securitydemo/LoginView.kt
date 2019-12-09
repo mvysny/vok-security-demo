@@ -1,7 +1,6 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
-import com.vaadin.flow.component.HasComponents
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
@@ -50,15 +49,4 @@ class LoginView : KComposite(), BeforeEnterObserver {
             }
         }
     }
-}
-
-// @todo remove these once Karibu-DSL 0.7.2 is released
-fun (@VaadinDsl HasComponents).loginForm(
-        loginI18n: LoginI18n = LoginI18n.createDefault(),
-        block: (@VaadinDsl LoginForm).() -> Unit = {}
-): LoginForm = init(LoginForm(loginI18n), block)
-
-fun loginI18n(block: LoginI18n.()->Unit): LoginI18n = LoginI18n.createDefault().apply {
-    header = LoginI18n.Header()
-    block()
 }
