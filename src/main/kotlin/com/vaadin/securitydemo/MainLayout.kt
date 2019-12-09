@@ -1,9 +1,8 @@
 package com.vaadin.securitydemo
 
-import com.github.mvysny.karibudsl.v10.KComposite
-import com.github.mvysny.karibudsl.v10.div
-import com.github.mvysny.karibudsl.v10.onLeftClick
+import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasElement
+import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
@@ -15,7 +14,6 @@ import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.flow.theme.Theme
 import com.vaadin.flow.theme.lumo.Lumo
-import com.vaadin.securitydemo.components.*
 import eu.vaadinonkotlin.vaadin10.Session
 import eu.vaadinonkotlin.vaadin10.VokSecurity
 
@@ -36,34 +34,41 @@ class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
         }
     }
 
-    private lateinit var content: Div
+    private lateinit var contentPane: Div
     private val root = ui {
-        appHeaderLayout {
-            appHeader {
-                appToolbar {
-                    title.text = "Vaadin Kotlin Security Demo"
-                    paperIconButton(VaadinIcon.FILE_REMOVE) {
-                        addClickListener {
-                            Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
-                        }
+        appLayout {
+            isDrawerOpened = false
+
+            navbar {
+                drawerToggle()
+                h3("Vaadin Kotlin Security Demo")
+                button(icon = VaadinIcon.FILE_REMOVE.create()) {
+                    addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_ICON)
+                    onLeftClick {
+                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
                     }
                 }
             }
-            appDrawer {
-                navItem(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
-                navItem(VaadinIcon.LIST, "User", UserView::class)
-                navItem(VaadinIcon.COG, "Admin", AdminView::class)
-                navItemClickable(VaadinIcon.SIGN_OUT, "Log Out") {
-                    onLeftClick { Session.loginManager.logout() }
+
+            drawer {
+                verticalLayout {
+                    routerLink(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
+                    routerLink(VaadinIcon.LIST, "User", UserView::class)
+                    routerLink(VaadinIcon.COG, "Admin", AdminView::class)
+                    button("Log Out", VaadinIcon.SIGN_OUT.create()) {
+                        onLeftClick { Session.loginManager.logout() }
+                    }
                 }
             }
-            content = div {
-                setSizeFull(); classNames.add("app-content")
+            content {
+                contentPane = div {
+                    setSizeFull(); classNames.add("app-content")
+                }
             }
         }
     }
 
     override fun showRouterLayoutContent(content: HasElement) {
-        this.content.element.appendChild(content.element)
+        this.contentPane.element.appendChild(content.element)
     }
 }

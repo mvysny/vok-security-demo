@@ -3,7 +3,6 @@ package com.vaadin.securitydemo
 import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.text
 import com.github.mvysny.karibudsl.v10.verticalLayout
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.*
 import eu.vaadinonkotlin.security.AccessRejectedException
 import org.slf4j.LoggerFactory

@@ -4,7 +4,6 @@ import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.h1
 import com.github.mvysny.karibudsl.v10.text
 import com.github.mvysny.karibudsl.v10.verticalLayout
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.security.AllowRoles
 

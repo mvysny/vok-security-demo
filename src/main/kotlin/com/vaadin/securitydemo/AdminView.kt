@@ -1,11 +1,10 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.security.AllowRoles
 import eu.vaadinonkotlin.vaadin10.generateFilterComponents
-import eu.vaadinonkotlin.vaadin10.sql2o.dataProvider
+import eu.vaadinonkotlin.vaadin10.vokdb.dataProvider
 
 /**
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.

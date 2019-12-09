@@ -1,8 +1,8 @@
 package com.vaadin.securitydemo
 
-import com.github.vokorm.Dao
-import com.github.vokorm.Entity
+import com.github.vokorm.KEntity
 import com.github.vokorm.findSpecificBy
+import com.gitlab.mvysny.jdbiorm.Dao
 import com.vaadin.flow.component.UI
 import eu.vaadinonkotlin.security.simple.HasPassword
 import eu.vaadinonkotlin.vaadin10.Session
@@ -18,8 +18,8 @@ import java.io.Serializable
 data class User(override var id: Long? = null,
                 var username: String = "",
                 override var hashedPassword: String = "",
-                var roles: String = "") : Entity<Long>, HasPassword {
-    companion object : Dao<User> {
+                var roles: String = "") : KEntity<Long>, HasPassword {
+    companion object : Dao<User, Long>(User::class.java) {
         /**
          * Finds user by his [username]. If there is no such user, returns `null`.
          */
