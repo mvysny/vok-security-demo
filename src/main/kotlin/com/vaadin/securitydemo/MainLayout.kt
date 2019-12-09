@@ -18,11 +18,9 @@ import eu.vaadinonkotlin.vaadin10.Session
 import eu.vaadinonkotlin.vaadin10.VokSecurity
 
 /**
- * The main layout. It uses the app-layout component which makes the app look like an Android Material app. See [AppHeaderLayout]
- * for more details.
+ * The main layout. It uses the app-layout component which makes the app look like an Android Material app.
  */
 @BodySize(width = "100vw", height = "100vh")
-@HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
@@ -69,6 +67,6 @@ class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
     }
 
     override fun showRouterLayoutContent(content: HasElement) {
-        this.contentPane.element.appendChild(content.element)
+        contentPane.element.appendChild(content.element)
     }
 }
