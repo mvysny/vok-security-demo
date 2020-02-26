@@ -80,6 +80,6 @@ tasks {
         }
     }
     val stage by registering {
-        dependsOn("build", copyToLib)
+        dependsOn("vaadinPrepareNode", "vaadinBuildFrontend", "build", copyToLib)
     }
 }
