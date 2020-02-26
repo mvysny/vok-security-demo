@@ -11,7 +11,7 @@ plugins {
     id("com.vaadin") version "0.5.0"
 }
 
-defaultTasks("clean", "build")
+defaultTasks("clean", "vaadinBuildFrontend", "build")
 
 repositories {
     mavenCentral()
@@ -41,7 +41,7 @@ dependencies {
     // Vaadin-on-Kotlin dependency, includes Vaadin
     compile("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
     // Vaadin 14
-    compile("com.vaadin:vaadin-core:${properties["vaadin_version"]}") {
+    compile("com.vaadin:vaadin-core:$vaadin10_version") {
         // Webjars are only needed when running in Vaadin 13 compatibility mode
         listOf("com.vaadin.webjar", "org.webjars.bowergithub.insites",
                 "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",

@@ -15,12 +15,18 @@ To quickly start the app, make sure that you have Java 8 JDK installed. Then, ju
 ```bash
 git clone https://github.com/mvysny/vok-security-demo-v10
 cd vok-security-demo-v10
-./gradlew appRun
+./gradlew clean vaadinPrepareFrontend appRun
 ```
 
 The app will be running on [http://localhost:8080/](http://localhost:8080/).
 
 The app is running live on Heroku at [https://vok-security-demo-v10.herokuapp.com](https://vok-security-demo-v10.herokuapp.com).
+
+To build the WAR file, just run
+
+```
+./gradlew
+```
 
 ## About the application
 
