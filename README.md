@@ -8,27 +8,88 @@
 Demonstrates the security aspect of the Vaadin-on-Kotlin framework. For a general information on
 VoK Security please head to the [vok-security module documentation](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/README.md).
 
+The app is running live on Heroku at [https://vok-security-demo-v10.herokuapp.com](https://vok-security-demo-v10.herokuapp.com).
+
+# Preparing Environment
+
+The Vaadin 14 build requires node.js and npm. You can either use the Vaadin Gradle plugin to install it for
+you (the `vaadinPrepareNode` task, handy for the CI), or you can install it to your OS:
+
+* Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
+* Linux: `sudo apt install npm`
+
+To make Vaadin Gradle plugin install node.js+npm for you, just run the following command
+in the project's sources (you only need to run this command once):
+
+```
+./gradlew vaadinPrepareNode
+```
+
+Also make sure that you have Java 8 (or higher) JDK installed.
+
 ## Getting Started
 
-To quickly start the app, make sure that you have Java 8 JDK installed. Then, just type this into your terminal:
+To quickly start the app, just type this into your terminal:
 
 ```bash
 git clone https://github.com/mvysny/vok-security-demo-v10
 cd vok-security-demo-v10
-./gradlew clean vaadinPrepareFrontend appRun
+./gradlew clean appRun
 ```
 
 The app will be running on [http://localhost:8080/](http://localhost:8080/).
 
-The app is running live on Heroku at [https://vok-security-demo-v10.herokuapp.com](https://vok-security-demo-v10.herokuapp.com).
+Since the build system is a Gradle file written in Kotlin, we suggest you
+use [Intellij IDEA](https://www.jetbrains.com/idea/download)
+to edit the project files. The Community edition is enough to run the server
+via Gretty's `./gradlew appRun`. The Ultimate edition will allow you to run the
+project in Tomcat - this is the recommended
+option for a real development.
 
-To build the WAR file, just run
+## Supported Modes
 
+Runs in Vaadin 14 npm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
+
+Both the [development and production modes](https://vaadin.com/docs/v14/flow/production/tutorial-production-mode-basic.html) are supported.
+To prepare for development mode, just run:
+
+```bash
+./gradlew clean vaadinPrepareFrontend
 ```
-./gradlew
+
+If you don't have node installed, you can use Vaadin plugin to download node.js for you:
+
+```bash
+./gradlew vaadinPrepareNode
 ```
 
-## About the application
+To build in production mode, just run:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode
+```
+
+If you don't have node installed in your CI environment, you can use Vaadin plugin to download node.js for you beforehand:
+
+```bash
+./gradlew clean vaadinPrepareNode vaadinBuildFrontend build
+```
+
+# Workflow
+
+To compile the entire project in production mode, run `./gradlew -Pvaadin.productionMode`.
+
+To run the application in development mode, run `./gradlew appRun` and open [http://localhost:8080/](http://localhost:8080/).
+
+To produce a deployable production-mode WAR:
+- run `./gradlew -Pvaadin.productionMode`
+- You will find the WAR file in `build/libs/*.war`
+- To revert your environment back to development mode, just run `./gradlew` or `./gradlew vaadinPrepareFrontend`
+  (omit the `-Pvaadin.productionMode`) switch.
+
+This will allow you to quickly start the example app and allow you to do some basic modifications.
+
+# About the application
 
 The application uses the username+password authorization, with users stored in an in-memory H2 SQL database
 (the [User](src/main/kotlin/com/vaadin/securitydemo/User.kt) class). There are no
