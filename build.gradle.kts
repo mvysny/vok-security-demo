@@ -8,7 +8,7 @@ plugins {
     kotlin("jvm") version "1.3.61"
     id("org.gretty") version "3.0.1"
     war
-    id("com.vaadin") version "0.5.0"
+    id("com.vaadin") version "0.6.0"
 }
 
 defaultTasks("clean", "vaadinBuildFrontend", "build")
@@ -80,6 +80,12 @@ tasks {
         }
     }
     val stage by registering {
-        dependsOn("vaadinPrepareNode", "vaadinBuildFrontend", "build", copyToLib)
+        dependsOn("vaadinPrepareNode", "build", copyToLib)
+    }
+}
+
+vaadin {
+    if (gradle.startParameter.taskNames.contains("stage")) {
+        productionMode = true
     }
 }
