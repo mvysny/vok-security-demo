@@ -1,11 +1,11 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.8.1"
-val vaadin10_version = "14.1.16"
+val vaadinonkotlin_version = "0.8.2"
+val vaadin10_version = "14.1.28"
 
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.72"
     id("org.gretty") version "3.0.1"
     war
     id("com.vaadin") version "0.6.0"
@@ -50,8 +50,6 @@ dependencies {
     }
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
-    compile("com.zaxxer:HikariCP:3.4.1")
-
     // logging
     // currently we are logging through the SLF4J API to LogBack. See src/main/resources/logback.xml file for the logger configuration
     compile("ch.qos.logback:logback-classic:1.2.3")
@@ -60,15 +58,16 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
 
     // db
+    compile("com.zaxxer:HikariCP:3.4.1")
     compile("org.flywaydb:flyway-core:6.1.4")
     compile("com.h2database:h2:1.4.200")
 
     // test support
-    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.19")
-    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.15")
+    testCompile("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.24")
+    testCompile("com.github.mvysny.dynatest:dynatest-engine:0.16")
 
     // heroku app runner
-    staging("com.github.jsimone:webapp-runner-main:9.0.27.1")
+    staging("com.heroku:webapp-runner-main:9.0.31.0")
 }
 
 // Heroku

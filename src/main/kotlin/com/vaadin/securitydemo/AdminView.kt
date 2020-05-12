@@ -1,9 +1,12 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
+import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.security.AllowRoles
-import eu.vaadinonkotlin.vaadin10.generateFilterComponents
+import eu.vaadinonkotlin.vaadin10.asFilterBar
+import eu.vaadinonkotlin.vaadin10.ilike
+import eu.vaadinonkotlin.vaadin10.inRange
 import eu.vaadinonkotlin.vaadin10.vokdb.dataProvider
 
 /**
@@ -18,12 +21,19 @@ class AdminView : KComposite() {
             grid<User>(dataProvider = User.dataProvider) {
                 isExpand = true
 
-                addColumnFor(User::id)
-                addColumnFor(User::username)
-                addColumnFor(User::roles)
-                addColumnFor(User::hashedPassword)
+                appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
+                val filterBar = appendHeaderRow().asFilterBar(this)
 
-                appendHeaderRow().generateFilterComponents(this, User::class)
+                addColumnFor(User::id) {
+                    filterBar.forField(NumberRangePopup(), this).inRange()
+                }
+                addColumnFor(User::username) {
+                    filterBar.forField(TextField(), this).ilike()
+                }
+                addColumnFor(User::roles) {
+                    filterBar.forField(TextField(), this).ilike()
+                }
+                addColumnFor(User::hashedPassword)
             }
         }
     }
