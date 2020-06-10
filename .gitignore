@@ -8,3 +8,4 @@ out
 node_modules
 target
 webpack.generated.js
+pnpmfile.js

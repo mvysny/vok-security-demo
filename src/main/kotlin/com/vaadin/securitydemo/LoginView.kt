@@ -19,7 +19,6 @@ import eu.vaadinonkotlin.vaadin10.Session
  * the reroute to login view no longer happens and the MainLayout is displayed on screen properly.
  */
 @BodySize(width = "100vw", height = "100vh")
-@HtmlImport("frontend://styles.html")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Theme(Lumo::class)
 @Route("login")
