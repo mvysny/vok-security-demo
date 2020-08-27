@@ -2,16 +2,16 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.8.2"
-val vaadin10_version = "14.2.0"
+val vaadin10_version = "14.3.4"
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.0"
     id("org.gretty") version "3.0.1"
     war
-    id("com.vaadin") version "0.7.0"
+    id("com.vaadin") version "0.8.0"
 }
 
-defaultTasks("clean", "vaadinBuildFrontend", "build")
+defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
@@ -58,13 +58,13 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:3.4.1")
+    implementation("com.zaxxer:HikariCP:3.4.5")
     implementation("org.flywaydb:flyway-core:6.1.4")
     implementation("com.h2database:h2:1.4.200")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.26")
-    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.16")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.30")
+    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
 
     // heroku app runner
     staging("com.heroku:webapp-runner-main:9.0.31.0")
