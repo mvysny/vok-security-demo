@@ -22,7 +22,6 @@ import eu.vaadinonkotlin.vaadin10.VokSecurity
  */
 @BodySize(width = "100vw", height = "100vh")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
-@Theme(Lumo::class)
 class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
     override fun beforeEnter(event: BeforeEnterEvent) {
         if (!Session.loginManager.isLoggedIn) {

@@ -20,7 +20,6 @@ import eu.vaadinonkotlin.vaadin10.Session
  */
 @BodySize(width = "100vw", height = "100vh")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
-@Theme(Lumo::class)
 @Route("login")
 class LoginView : KComposite(), BeforeEnterObserver {
 
