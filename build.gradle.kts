@@ -6,7 +6,7 @@ val vaadin10_version = "14.3.4"
 
 plugins {
     kotlin("jvm") version "1.4.0"
-    id("org.gretty") version "3.0.1"
+    id("org.gretty") version "3.0.3"
     war
     id("com.vaadin") version "0.8.0"
 }
@@ -63,7 +63,7 @@ dependencies {
     implementation("com.h2database:h2:1.4.200")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.3")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.4")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
 
     // heroku app runner
