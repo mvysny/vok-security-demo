@@ -63,7 +63,7 @@ dependencies {
     implementation("com.h2database:h2:1.4.200")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.1.30")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.3")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
 
     // heroku app runner
