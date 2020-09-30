@@ -1,14 +1,14 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.8.2"
-val vaadin10_version = "14.3.4"
+val vaadinonkotlin_version = "0.8.3"
+val vaadin10_version = "14.3.7"
 
 plugins {
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.10"
     id("org.gretty") version "3.0.3"
     war
-    id("com.vaadin") version "0.8.0"
+    id("com.vaadin") version "0.14.3.7"
 }
 
 defaultTasks("clean", "build")
@@ -64,7 +64,7 @@ dependencies {
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.2.5")
-    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.17")
+    testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.19")
 
     // heroku app runner
     staging("com.heroku:webapp-runner-main:9.0.36.1")
