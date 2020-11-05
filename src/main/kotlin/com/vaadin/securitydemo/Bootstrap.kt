@@ -1,5 +1,7 @@
 package com.vaadin.securitydemo
 
+import com.vaadin.flow.component.dependency.NpmPackage
+import com.vaadin.shrinkwrap.VaadinCoreShrinkWrap
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
@@ -71,4 +73,12 @@ class Bootstrap: ServletContextListener {
         @JvmStatic
         private val log = LoggerFactory.getLogger(Bootstrap::class.java)
     }
+}
+
+/**
+ * Returns the Vaadin version in use, e.g. "14.4.2".
+ */
+val vaadinVersion: String? get() {
+    val annotation: NpmPackage? = VaadinCoreShrinkWrap::class.java.getAnnotation(NpmPackage::class.java)
+    return annotation?.version
 }

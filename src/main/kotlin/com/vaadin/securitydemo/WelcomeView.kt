@@ -1,9 +1,7 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
-import com.vaadin.flow.component.orderedlayout.VerticalLayout
 import com.vaadin.flow.router.Route
-import com.vaadin.flow.server.Version
 import eu.vaadinonkotlin.security.AllowAllUsers
 
 /**
@@ -28,7 +26,7 @@ class WelcomeView : KComposite() {
                 isMargin = false; isSpacing = true
                 h1("Yay! You're on Vaadin-on-Kotlin!")
                 text("This is a welcome view for all users; all logged-in users can see this content")
-                div { html("<strong>Vaadin version: </strong> ${Version.getFullVersion()}") }
+                div { html("<strong>Vaadin version: </strong> $vaadinVersion") }
                 div { html("<strong>Kotlin version: </strong> ${KotlinVersion.CURRENT}") }
                 div { html("<strong>JVM version: </strong> $jvmVersion") }
             }
