@@ -2,27 +2,20 @@
 [![Join the chat at https://gitter.im/vaadin/vaadin-on-kotlin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-on-kotlin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=vok-security-demo-v10&style=flat&svg=1)](https://vok-security-demo-v10.herokuapp.com/)
 
-# Vaadin-on-Kotlin Security Demo for Vaadin 10
+# Vaadin-on-Kotlin Security Demo for Vaadin 14
 
 Demonstrates the security aspect of the Vaadin-on-Kotlin framework. For a general information on
 VoK Security please head to the [vok-security module documentation](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/README.md).
 
-The app is running live on Heroku at [https://vok-security-demo-v10.herokuapp.com](https://vok-security-demo-v10.herokuapp.com).
+The app is running live on Heroku at [https://vok-security-demo.herokuapp.com](https://vok-security-demo.herokuapp.com).
 
 # Preparing Environment
 
 The Vaadin 14 build requires node.js and npm. You can either use the Vaadin Gradle plugin to install it for
-you (the `vaadinPrepareNode` task, handy for the CI), or you can install it to your OS:
+you automatically (recommended, you don't need to do anything), or you can install it to your OS:
 
 * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
 * Linux: `sudo apt install npm`
-
-To make Vaadin Gradle plugin install node.js+npm for you, just run the following command
-in the project's sources (you only need to run this command once):
-
-```
-./gradlew vaadinPrepareNode
-```
 
 Also make sure that you have Java 8 (or higher) JDK installed.
 
@@ -31,9 +24,9 @@ Also make sure that you have Java 8 (or higher) JDK installed.
 To quickly start the app, just type this into your terminal:
 
 ```bash
-git clone https://github.com/mvysny/vok-security-demo-v10
-cd vok-security-demo-v10
-./gradlew clean appRun
+git clone https://github.com/mvysny/vok-security-demo
+cd vok-security-demo
+./gradlew clean build appRun
 ```
 
 Gradle will automatically download an embedded servlet container (Jetty) and will run your app in it. Your app will be running on
