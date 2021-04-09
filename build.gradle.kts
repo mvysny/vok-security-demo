@@ -2,13 +2,13 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.9.1"
-val vaadin10_version = "14.4.9"
+val vaadin10_version = "14.5.2"
 
 plugins {
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.4.32"
     id("org.gretty") version "3.0.3"
     war
-    id("com.vaadin") version "0.14.3.7"
+    id("com.vaadin") version "0.14.5.1"
 }
 
 defaultTasks("clean", "build")
