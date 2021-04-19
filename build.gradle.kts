@@ -1,12 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.9.1"
-val vaadin10_version = "14.5.2"
+val vaadinonkotlin_version = "0.10.0"
+val vaadin10_version = "14.5.3"
 
 plugins {
     kotlin("jvm") version "1.4.32"
-    id("org.gretty") version "3.0.3"
+    id("org.gretty") version "3.0.4"
     war
     id("com.vaadin") version "0.14.5.1"
 }
@@ -58,7 +58,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:3.4.5")
+    implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("org.flywaydb:flyway-core:7.1.1")
     implementation("com.h2database:h2:1.4.200")
 
