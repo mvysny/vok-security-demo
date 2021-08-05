@@ -2,10 +2,10 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.10.0"
-val vaadin10_version = "14.6.4"
+val vaadin10_version = "14.6.7"
 
 plugins {
-    kotlin("jvm") version "1.5.10"
+    kotlin("jvm") version "1.5.21"
     id("org.gretty") version "3.0.4"
     war
     id("com.vaadin") version "0.14.6.0"
@@ -52,8 +52,8 @@ dependencies {
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
-    implementation("org.slf4j:slf4j-simple:1.7.30")
-    implementation("org.slf4j:slf4j-api:1.7.30")
+    implementation("org.slf4j:slf4j-simple:1.7.32")
+    implementation("org.slf4j:slf4j-api:1.7.32")
 
     implementation(kotlin("stdlib-jdk8"))
 
