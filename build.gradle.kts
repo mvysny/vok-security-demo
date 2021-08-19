@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.10.0"
-val vaadin10_version = "14.6.7"
+val vaadin10_version = "14.6.8"
 
 plugins {
     kotlin("jvm") version "1.5.21"
@@ -58,11 +58,11 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.flywaydb:flyway-core:7.1.1")
+    implementation("org.flywaydb:flyway-core:7.12.1")
     implementation("com.h2database:h2:1.4.200")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.0")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.1")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.20")
 
     // heroku app runner
