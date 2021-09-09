@@ -1,11 +1,11 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.10.0"
-val vaadin10_version = "14.6.8"
+val vaadinonkotlin_version = "0.11.0"
+val vaadin_version = "14.6.8"
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.30"
     id("org.gretty") version "3.0.6"
     war
     id("com.vaadin") version "0.14.6.0"
@@ -37,10 +37,11 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    // Vaadin-on-Kotlin dependency, includes Vaadin
+    // Vaadin-on-Kotlin dependency
     implementation("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
+    implementation("eu.vaadinonkotlin:vok-security:$vaadinonkotlin_version")
     // Vaadin 14
-    implementation("com.vaadin:vaadin-core:$vaadin10_version") {
+    implementation("com.vaadin:vaadin-core:$vaadin_version") {
         // Webjars are only needed when running in Vaadin 13 compatibility mode
         listOf("com.vaadin.webjar", "org.webjars.bowergithub.insites",
                 "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
@@ -58,15 +59,20 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.flywaydb:flyway-core:7.12.1")
+    implementation("org.flywaydb:flyway-core:7.14.1")
     implementation("com.h2database:h2:1.4.200")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.1")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.2")
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.20")
 
     // heroku app runner
     staging("com.heroku:webapp-runner-main:9.0.41.0")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 // Heroku

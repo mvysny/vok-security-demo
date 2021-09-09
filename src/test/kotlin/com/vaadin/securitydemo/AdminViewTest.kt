@@ -2,11 +2,11 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.dynatest.DynaTest
-import com.github.mvysny.karibudsl.v10.navigateToView
 import com.github.mvysny.kaributesting.v10.MockVaadin
 import com.github.mvysny.kaributesting.v10.Routes
 import com.github.mvysny.kaributesting.v10._expectNone
 import com.github.mvysny.kaributesting.v10._get
+import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.login.LoginForm
@@ -33,16 +33,16 @@ class AdminViewTest : DynaTest({
 
     test("Admin should see AdminView properly") {
         login("admin")
-        navigateToView<AdminView>()
+        navigateTo<AdminView>()
         _get<AdminView>()
     }
 
     test("User should not see AdminView") {
         login("user")
         // this should not be allowed for security reasons:
-        navigateToView<AdminView>()
+        navigateTo<AdminView>()
         // expect that an AccessDeniedView is shown
-        _get<AccessDeniedView>()._get<Text> { text = "Access denied: Can not access AdminView, you are not admin" }
+        _get<AccessDeniedView>()._get<Text> { text = "Access denied: Route AdminView: Can not access AdminView, you are not admin" }
     }
 })
 

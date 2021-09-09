@@ -3,7 +3,6 @@ package com.vaadin.securitydemo
 import com.github.mvysny.karibudsl.v10.*
 import com.vaadin.flow.component.HasElement
 import com.vaadin.flow.component.button.ButtonVariant
-import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
@@ -12,16 +11,16 @@ import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.BeforeEnterEvent
 import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.RouterLayout
-import com.vaadin.flow.theme.Theme
-import com.vaadin.flow.theme.lumo.Lumo
+import eu.vaadinonkotlin.security.AllowAllUsers
+import eu.vaadinonkotlin.security.VokSecurity
 import eu.vaadinonkotlin.vaadin10.Session
-import eu.vaadinonkotlin.vaadin10.VokSecurity
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app.
  */
 @BodySize(width = "100vw", height = "100vh")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
+@AllowAllUsers
 class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
     override fun beforeEnter(event: BeforeEnterEvent) {
         if (!Session.loginManager.isLoggedIn) {

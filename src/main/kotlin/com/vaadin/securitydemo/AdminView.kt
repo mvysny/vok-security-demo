@@ -34,7 +34,7 @@ class AdminView : KComposite() {
                 addColumnFor(User::roles) {
                     filterBar.forField(TextField(), this).istartsWith()
                 }
-                addColumnFor(User::hashedPassword)
+                addColumnFor(User::hashedPassword) {}
             }
         }
     }
