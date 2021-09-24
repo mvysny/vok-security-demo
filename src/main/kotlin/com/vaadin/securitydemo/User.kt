@@ -4,6 +4,8 @@ import com.github.vokorm.KEntity
 import com.github.vokorm.findOneBy
 import com.gitlab.mvysny.jdbiorm.Dao
 import com.vaadin.flow.component.UI
+import com.vaadin.flow.server.VaadinRequest
+import com.vaadin.flow.server.VaadinService
 import eu.vaadinonkotlin.security.simple.HasPassword
 import eu.vaadinonkotlin.vaadin10.Session
 import java.io.Serializable
@@ -59,6 +61,10 @@ class LoginManager: Serializable {
     private fun login(user: User) {
         check(this.user == null) { "An user is already logged in" }
         this.user = user
+
+        // creates a new session after login, to prevent session fixation attack
+        VaadinService.reinitializeSession(VaadinRequest.getCurrent())
+
         // this will cause the UI to be re-created. Since the user is now logged in and present in the session,
         // the UI should now initialize properly and should not show the LoginView.
         UI.getCurrent().page.reload()
