@@ -67,7 +67,7 @@ dependencies {
     testImplementation("com.github.mvysny.dynatest:dynatest-engine:0.20")
 
     // heroku app runner
-    staging("com.heroku:webapp-runner-main:9.0.55.0")
+    staging("com.heroku:webapp-runner-main:9.0.52.0")
 }
 
 java {
