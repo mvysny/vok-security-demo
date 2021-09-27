@@ -1,8 +1,8 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.11.0"
-val vaadin_version = "14.7.0"
+val vaadinonkotlin_version = "0.11.1"
+val vaadin_version = "14.7.1"
 
 plugins {
     kotlin("jvm") version "1.5.31"
@@ -38,7 +38,7 @@ tasks.withType<Test> {
 
 dependencies {
     // Vaadin-on-Kotlin dependency
-    implementation("eu.vaadinonkotlin:vok-framework-v10-vokdb:$vaadinonkotlin_version")
+    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("eu.vaadinonkotlin:vok-security:$vaadinonkotlin_version")
     // Vaadin 14
     implementation("com.vaadin:vaadin-core:$vaadin_version") {
