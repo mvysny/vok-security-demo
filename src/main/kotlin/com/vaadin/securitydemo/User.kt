@@ -9,6 +9,7 @@ import com.vaadin.flow.server.VaadinService
 import eu.vaadinonkotlin.security.simple.HasPassword
 import eu.vaadinonkotlin.vaadin10.Session
 import java.io.Serializable
+import javax.security.auth.login.FailedLoginException
 
 /**
  * Represents an user. Stored in a database; see [Entity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.
@@ -46,13 +47,15 @@ class LoginManager: Serializable {
     val isLoggedIn: Boolean get() = user != null
 
     /**
-     * Logs in user with given [username] and [password]. Returns true on success, false on failure.
+     * Logs in user with given [username] and [password]. Fails with [javax.security.auth.login.LoginException]
+     * on failure.
      */
-    fun login(username: String, password: String): Boolean {
-        val user: User = User.findByUsername(username) ?: return false
-        if (!user.passwordMatches(password)) return false
+    fun login(username: String, password: String) {
+        val user: User = User.findByUsername(username) ?: throw FailedLoginException("Invalid username or password")
+        if (!user.passwordMatches(password)) {
+            throw FailedLoginException("Invalid username or password")
+        }
         login(user)
-        return true
     }
 
     /**
@@ -77,7 +80,6 @@ class LoginManager: Serializable {
         Session.current.close()
         // The UI is recreated by the page reload, and since there is no user in the session (since it has been cleared),
         // the UI will show the LoginView.
-        UI.getCurrent().navigate("")
         UI.getCurrent().page.reload()
     }
 

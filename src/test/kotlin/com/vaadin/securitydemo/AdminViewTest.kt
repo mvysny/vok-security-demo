@@ -17,7 +17,7 @@ import kotlin.test.expect
  * Mocks the UI and logs in given user.
  */
 fun login(username: String) {
-    expect(true) { Session.loginManager.login(username, username) }
+    Session.loginManager.login(username, username)
     UI.getCurrent().page.reload()
     // check that there is no LoginForm and everything is prepared
     _expectNone<LoginForm>()

@@ -49,6 +49,7 @@ dependencies {
                 .forEach { exclude(group = it) }
     }
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+    implementation("com.github.mvysny.karibu-tools:karibu-tools:0.5")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
