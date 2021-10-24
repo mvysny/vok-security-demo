@@ -25,16 +25,16 @@ class AdminView : KComposite() {
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
                 val filterBar: FilterBar<User, Filter<User>> = appendHeaderRow().asFilterBar(this)
 
-                addColumnFor(User::id) {
+                columnFor(User::id) {
                     filterBar.forField(NumberRangePopup(), this).inRange()
                 }
-                addColumnFor(User::username) {
+                columnFor(User::username) {
                     filterBar.forField(TextField(), this).istartsWith()
                 }
-                addColumnFor(User::roles) {
+                columnFor(User::roles) {
                     filterBar.forField(TextField(), this).istartsWith()
                 }
-                addColumnFor(User::hashedPassword) {}
+                columnFor(User::hashedPassword)
             }
         }
     }

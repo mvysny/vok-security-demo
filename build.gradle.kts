@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.11.1"
+val vaadinonkotlin_version = "0.11.2"
 val vaadin_version = "14.7.1"
 
 plugins {
@@ -49,7 +49,6 @@ dependencies {
                 .forEach { exclude(group = it) }
     }
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
-    implementation("com.github.mvysny.karibu-tools:karibu-tools:0.5")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
@@ -60,7 +59,7 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.flywaydb:flyway-core:7.14.1")
+    implementation("org.flywaydb:flyway-core:8.0.1")
     implementation("com.h2database:h2:1.4.200")
 
     // test support
