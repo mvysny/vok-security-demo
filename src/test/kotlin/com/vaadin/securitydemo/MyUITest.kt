@@ -1,10 +1,11 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.dynatest.DynaTest
-import com.github.mvysny.kaributesting.v10._expectNone
-import com.github.mvysny.kaributesting.v10._get
-import com.github.mvysny.kaributesting.v10._login
+import com.github.mvysny.kaributesting.v10.*
+import com.github.mvysny.kaributools.navigateTo
+import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.flow.router.InternalServerError
 import eu.vaadinonkotlin.vaadin10.Session
 import kotlin.test.expect
 
@@ -15,18 +16,26 @@ class MyUITest : DynaTest({
     usingApp()
 
     test("unsuccessful login") {
-        _get<LoginView>() // check that initially the LoginView is displayed
+        _expectOne<LoginView>() // check that initially the LoginView is displayed
         _get<LoginForm>()._login("invaliduser", "invaliduser")
         expect(false) { Session.loginManager.isLoggedIn }
         expect(true) { _get<LoginForm>().isError }
     }
 
     test("successful login") {
-        _get<LoginView>() // check that initially the LoginView is displayed
+        _expectOne<LoginView>() // check that initially the LoginView is displayed
         _get<LoginForm>()._login("user", "user")
         expect(true) { Session.loginManager.isLoggedIn }
         _expectNone<LoginView>()
         // after successful login the WelcomeView should be displayed
         _get<WelcomeView>()
+    }
+
+    test("error route not hijacked by the LoginView") {
+        UI.getCurrent().addBeforeEnterListener { e ->
+            e.rerouteToError(RuntimeException("Simulated"), "Simulated")
+        }
+        navigateTo(WelcomeView::class)
+        _expectInternalServerError("Simulated")
     }
 })
