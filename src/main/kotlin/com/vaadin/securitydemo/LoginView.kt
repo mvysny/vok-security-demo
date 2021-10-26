@@ -2,7 +2,6 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
-import com.vaadin.flow.component.dependency.HtmlImport
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
 import com.vaadin.flow.component.page.BodySize
@@ -10,9 +9,8 @@ import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.BeforeEnterEvent
 import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.Route
-import com.vaadin.flow.theme.Theme
-import com.vaadin.flow.theme.lumo.Lumo
 import eu.vaadinonkotlin.vaadin10.Session
+import org.slf4j.LoggerFactory
 import javax.security.auth.login.LoginException
 
 /**
@@ -54,6 +52,6 @@ class LoginView : KComposite(), BeforeEnterObserver {
 
     companion object {
         @JvmStatic
-        private val log = org.slf4j.LoggerFactory.getLogger(LoginView::class.java)
+        private val log = LoggerFactory.getLogger(LoginView::class.java)
     }
 }
