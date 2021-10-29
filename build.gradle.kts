@@ -8,7 +8,7 @@ plugins {
     kotlin("jvm") version "1.5.31"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "0.14.6.0"
+    id("com.vaadin") version "0.14.7.3"
 }
 
 defaultTasks("clean", "build")
@@ -58,7 +58,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation("com.zaxxer:HikariCP:4.0.3") // 5.0.0 is java 11+ only
     implementation("org.flywaydb:flyway-core:8.0.1")
     implementation("com.h2database:h2:1.4.200")
 
