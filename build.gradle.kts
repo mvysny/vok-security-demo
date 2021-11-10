@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.11.2"
-val vaadin_version = "14.7.3"
+val vaadin_version = "14.7.4"
 
 plugins {
     kotlin("jvm") version "1.5.31"
