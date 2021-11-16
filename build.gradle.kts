@@ -5,7 +5,7 @@ val vaadinonkotlin_version = "0.11.2"
 val vaadin_version = "14.7.5"
 
 plugins {
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
     id("org.gretty") version "3.0.6"
     war
     id("com.vaadin") version "0.14.7.3"
