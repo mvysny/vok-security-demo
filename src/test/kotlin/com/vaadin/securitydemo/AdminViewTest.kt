@@ -16,7 +16,7 @@ fun login(username: String) {
     // check that there is no LoginForm and everything is prepared
     _expectNone<LoginForm>()
     // in fact, by default the WelcomeView should be displayed
-    _get<WelcomeView>()
+    _expectOne<WelcomeView>()
 }
 
 /**
@@ -28,7 +28,7 @@ class AdminViewTest : DynaTest({
     test("Admin should see AdminView properly") {
         login("admin")
         navigateTo<AdminView>()
-        _get<AdminView>()
+        _expectOne<AdminView>()
     }
 
     test("User should not see AdminView") {

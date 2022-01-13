@@ -3,7 +3,7 @@ package com.vaadin.securitydemo
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.security.AllowAllUsers
+import javax.annotation.security.PermitAll
 
 /**
  * The welcome view of the app, visible to all users. It is a vertical layout which lays out the child components vertically.
@@ -15,7 +15,7 @@ import eu.vaadinonkotlin.security.AllowAllUsers
  * create an app-wide layout which hosts views.
  */
 @Route("", layout = MainLayout::class)
-@AllowAllUsers
+@PermitAll
 class WelcomeView : KComposite() {
     private val root = ui {
         verticalLayout {

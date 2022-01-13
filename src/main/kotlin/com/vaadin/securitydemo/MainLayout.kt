@@ -7,13 +7,13 @@ import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.RouterLayout
-import eu.vaadinonkotlin.security.AllowAllUsers
 import eu.vaadinonkotlin.vaadin.Session
+import javax.annotation.security.PermitAll
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app.
  */
-@AllowAllUsers
+@PermitAll
 class MainLayout : KComposite(), RouterLayout {
 
     private lateinit var contentPane: Div

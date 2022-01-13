@@ -5,15 +5,15 @@ import com.github.mvysny.vokdataloader.Filter
 import com.github.vokorm.dataloader.dataLoader
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.security.AllowRoles
 import eu.vaadinonkotlin.vaadin.*
 import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
+import javax.annotation.security.RolesAllowed
 
 /**
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.
  */
 @Route("admin", layout = MainLayout::class)
-@AllowRoles("admin")
+@RolesAllowed("admin")
 class AdminView : KComposite() {
     private val root = ui {
         verticalLayout {
