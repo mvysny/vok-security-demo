@@ -4,7 +4,6 @@ import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.kaributools.navigateTo
-import com.vaadin.flow.component.Text
 import com.vaadin.flow.component.login.LoginForm
 import eu.vaadinonkotlin.vaadin.Session
 
@@ -25,6 +24,11 @@ fun login(username: String) {
 class AdminViewTest : DynaTest({
     usingApp()
 
+    test("logged out user should not be able to see AdminView") {
+        navigateTo<AdminView>()
+        _expectOne<LoginView>()
+    }
+
     test("Admin should see AdminView properly") {
         login("admin")
         navigateTo<AdminView>()
@@ -40,10 +44,10 @@ class AdminViewTest : DynaTest({
     }
 })
 
+private val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
+
 fun DynaNodeGroup.usingApp() {
-    lateinit var routes: Routes
     beforeGroup {
-        routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
         Bootstrap().contextInitialized(null)
     }
     afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }

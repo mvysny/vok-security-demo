@@ -11,7 +11,7 @@ import kotlin.test.expect
 /**
  * Uses the [Karibu-Testing](https://github.com/mvysny/karibu-testing) library to test Vaadin-based apps.
  */
-class MyUITest : DynaTest({
+class LoginViewTest : DynaTest({
     usingApp()
 
     test("unsuccessful login") {
