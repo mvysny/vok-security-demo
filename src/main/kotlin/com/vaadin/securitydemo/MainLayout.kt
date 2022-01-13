@@ -6,29 +6,15 @@ import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
-import com.vaadin.flow.component.page.BodySize
-import com.vaadin.flow.component.page.Viewport
-import com.vaadin.flow.router.BeforeEnterEvent
-import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.RouterLayout
 import eu.vaadinonkotlin.security.AllowAllUsers
-import eu.vaadinonkotlin.security.VokSecurity
-import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin.Session
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app.
  */
-@BodySize(width = "100vw", height = "100vh")
-@Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @AllowAllUsers
-class MainLayout : KComposite(), RouterLayout, BeforeEnterObserver {
-    override fun beforeEnter(event: BeforeEnterEvent) {
-        if (!Session.loginManager.isLoggedIn) {
-            event.rerouteTo(LoginView::class.java)
-        } else {
-            VokSecurity.checkPermissionsOfView(event.navigationTarget)
-        }
-    }
+class MainLayout : KComposite(), RouterLayout {
 
     private lateinit var contentPane: Div
     private val root = ui {

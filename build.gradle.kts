@@ -1,20 +1,21 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.11.2"
-val vaadin_version = "14.8.0"
+val vaadinonkotlin_version = "0.12.0"
+val vaadin_version = "23.0.0.alpha1"
 
 plugins {
     kotlin("jvm") version "1.6.10"
     id("org.gretty") version "3.0.6"
     war
-    id("com.vaadin") version "0.14.7.5"
+    id("com.vaadin") version "23.0.0.alpha1"
 }
 
 defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
+    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
 }
 
 gretty {
@@ -25,7 +26,8 @@ gretty {
 val staging by configurations.creating
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    // Vaadin 23 requires JDK 11+ anyway
+    kotlinOptions.jvmTarget = "11"
 }
 
 tasks.withType<Test> {
@@ -41,13 +43,7 @@ dependencies {
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("eu.vaadinonkotlin:vok-security:$vaadinonkotlin_version")
     // Vaadin 14
-    implementation("com.vaadin:vaadin-core:$vaadin_version") {
-        // Webjars are only needed when running in Vaadin 13 compatibility mode
-        listOf("com.vaadin.webjar", "org.webjars.bowergithub.insites",
-                "org.webjars.bowergithub.polymer", "org.webjars.bowergithub.polymerelements",
-                "org.webjars.bowergithub.vaadin", "org.webjars.bowergithub.webcomponents")
-                .forEach { exclude(group = it) }
-    }
+    implementation("com.vaadin:vaadin-core:$vaadin_version")
     providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 
     // logging
@@ -59,11 +55,11 @@ dependencies {
 
     // db
     implementation("com.zaxxer:HikariCP:4.0.3") // 5.0.0 is java 11+ only
-    implementation("org.flywaydb:flyway-core:8.0.1")
-    implementation("com.h2database:h2:1.4.200")
+    implementation("org.flywaydb:flyway-core:8.4.1")
+    implementation("com.h2database:h2:2.0.206")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.8")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.9")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.22")
 
     // heroku app runner
@@ -71,8 +67,9 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    // Vaadin 23 requires JDK 11+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 // Heroku

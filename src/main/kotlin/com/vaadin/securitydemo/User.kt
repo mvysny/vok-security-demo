@@ -6,13 +6,15 @@ import com.gitlab.mvysny.jdbiorm.Dao
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.server.VaadinRequest
 import com.vaadin.flow.server.VaadinService
+import eu.vaadinonkotlin.security.BasicUserPrincipal
 import eu.vaadinonkotlin.security.simple.HasPassword
-import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin.Session
 import java.io.Serializable
+import java.security.Principal
 import javax.security.auth.login.FailedLoginException
 
 /**
- * Represents an user. Stored in a database; see [Entity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.
+ * Represents an user. Stored in a database; see [KEntity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.
  * Implements the [HasPassword] helper interface which provides password hashing functionality. Remember to set the
  * password via [HasPassword.setPassword] and verify the password via [HasPassword.passwordMatches].
  * @property username user name, unique
@@ -46,6 +48,11 @@ class LoginManager: Serializable {
      */
     val isLoggedIn: Boolean get() = user != null
 
+    fun getPrincipal(): Principal? {
+        val user = user
+        return if (user == null) null else BasicUserPrincipal(user.username)
+    }
+
     /**
      * Logs in user with given [username] and [password]. Fails with [javax.security.auth.login.LoginException]
      * on failure.
@@ -59,18 +66,18 @@ class LoginManager: Serializable {
     }
 
     /**
-     * Logs in an [user]. Fails if the user is already logged in.
+     * Logs in given [user].
      */
     private fun login(user: User) {
-        check(this.user == null) { "An user is already logged in" }
         this.user = user
 
         // creates a new session after login, to prevent session fixation attack
         VaadinService.reinitializeSession(VaadinRequest.getCurrent())
 
-        // this will cause the UI to be re-created. Since the user is now logged in and present in the session,
-        // the UI should now initialize properly and should not show the LoginView.
-        UI.getCurrent().page.reload()
+        // navigate the user away from the LoginView and to the landing page.
+        // all logged-in users must be able to see the landing page, otherwise they will
+        // be redirected back to the LoginView.
+        UI.getCurrent().navigate(WelcomeView::class.java)
     }
 
     /**

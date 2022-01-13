@@ -4,12 +4,9 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
-import com.vaadin.flow.component.page.BodySize
-import com.vaadin.flow.component.page.Viewport
 import com.vaadin.flow.router.BeforeEnterEvent
-import com.vaadin.flow.router.BeforeEnterObserver
 import com.vaadin.flow.router.Route
-import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin.Session
 import org.slf4j.LoggerFactory
 import javax.security.auth.login.LoginException
 
@@ -18,16 +15,8 @@ import javax.security.auth.login.LoginException
  * the page is refreshed which forces the MainLayout to reinitialize. However, now that the user is present in the session,
  * the reroute to login view no longer happens and the MainLayout is displayed on screen properly.
  */
-@BodySize(width = "100vw", height = "100vh")
-@Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes")
 @Route("login")
-class LoginView : KComposite(), BeforeEnterObserver {
-    override fun beforeEnter(event: BeforeEnterEvent) {
-        if (Session.loginManager.isLoggedIn) {
-            event.rerouteTo("")
-        }
-    }
-
+class LoginView : KComposite() {
     private lateinit var loginForm: LoginForm
     private val root = ui {
         verticalLayout {
@@ -42,6 +31,9 @@ class LoginView : KComposite(), BeforeEnterObserver {
                     try {
                         Session.loginManager.login(e.username, e.password)
                     } catch (e: LoginException) {
+                        log.warn("Login failed", e)
+                        setErrorMessage("Login failed", e.message)
+                    } catch (e: Exception) {
                         log.warn("Login failed", e)
                         setErrorMessage("Login failed", e.message)
                     }

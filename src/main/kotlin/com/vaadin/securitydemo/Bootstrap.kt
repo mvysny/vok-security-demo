@@ -1,15 +1,21 @@
 package com.vaadin.securitydemo
 
+import com.vaadin.flow.component.page.AppShellConfigurator
+import com.vaadin.flow.server.PWA
+import com.vaadin.flow.server.ServiceInitEvent
+import com.vaadin.flow.server.VaadinServiceInitListener
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
 import eu.vaadinonkotlin.security.LoggedInUserResolver
+import eu.vaadinonkotlin.security.VokViewAccessChecker
 import eu.vaadinonkotlin.security.loggedInUserResolver
-import eu.vaadinonkotlin.vaadin10.Session
+import eu.vaadinonkotlin.vaadin.Session
 import eu.vaadinonkotlin.vokdb.dataSource
 import org.flywaydb.core.Flyway
 import org.h2.Driver
 import org.slf4j.LoggerFactory
+import java.security.Principal
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener
 import javax.servlet.annotation.WebListener
@@ -48,7 +54,7 @@ class Bootstrap: ServletContextListener {
 
         // setup security
         VaadinOnKotlin.loggedInUserResolver = object : LoggedInUserResolver {
-            override fun isLoggedIn(): Boolean = Session.loginManager.isLoggedIn
+            override fun getCurrentUser(): Principal? = Session.loginManager.getPrincipal()
             override fun getCurrentUserRoles(): Set<String> = Session.loginManager.getCurrentUserRoles()
         }
         User(username = "admin", roles = "admin,user").apply { setPassword("admin"); save() }
@@ -70,5 +76,21 @@ class Bootstrap: ServletContextListener {
     companion object {
         @JvmStatic
         private val log = LoggerFactory.getLogger(Bootstrap::class.java)
+    }
+}
+
+@PWA(name = "VoK Security Demo", shortName = "VoK Security Demo")
+class AppShell: AppShellConfigurator
+
+/**
+ * Checks security and redirects to the LoginView if need be.
+ */
+class VaadinServiceInitListener : VaadinServiceInitListener {
+    override fun serviceInit(e: ServiceInitEvent) {
+        e.source.addUIInitListener { uiInitEvent ->
+            val checker = VokViewAccessChecker()
+            checker.setLoginView(LoginView::class.java)
+            uiInitEvent.ui.addBeforeEnterListener(checker)
+        }
     }
 }

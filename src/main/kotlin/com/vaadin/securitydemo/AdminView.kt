@@ -6,8 +6,8 @@ import com.github.vokorm.dataloader.dataLoader
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.security.AllowRoles
-import eu.vaadinonkotlin.vaadin10.*
-import eu.vaadinonkotlin.vaadin10.vokdb.setDataLoader
+import eu.vaadinonkotlin.vaadin.*
+import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 
 /**
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.

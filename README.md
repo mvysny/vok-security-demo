@@ -3,7 +3,7 @@
 [![Heroku](https://heroku-badge.herokuapp.com/?app=vok-security-demo&style=flat&svg=1)](https://vok-security-demo.herokuapp.com/)
 [![Build Status](https://github.com/mvysny/vok-security-demo/actions/workflows/gradle.yml/badge.svg)](https://github.com/mvysny/vok-security-demo/actions/workflows/gradle.yml)
 
-# Vaadin-on-Kotlin Security Demo for Vaadin 14
+# Vaadin-on-Kotlin Security Demo for Vaadin
 
 Demonstrates the security aspect of the Vaadin-on-Kotlin framework. For a general information on
 VoK Security please head to the [vok-security module documentation](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/README.md).
@@ -12,13 +12,13 @@ The app is running live on Heroku at [https://vok-security-demo.herokuapp.com](h
 
 # Preparing Environment
 
-The Vaadin 14 build requires node.js and npm. You can either use the Vaadin Gradle plugin to install it for
+The Vaadin build requires node.js and npm. You can either use the Vaadin Gradle plugin to install it for
 you automatically (recommended, you don't need to do anything), or you can install it to your OS:
 
 * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
 * Linux: `sudo apt install npm`
 
-Also make sure that you have Java 8 (or higher) JDK installed.
+Also make sure that you have Java 11 (or higher) JDK installed.
 
 ## Getting Started
 
@@ -42,9 +42,9 @@ option for a real development.
 
 ## Supported Modes
 
-Runs in Vaadin 14 npm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
+Runs in Vaadin pnpm mode, using the [Vaadin Gradle Plugin](https://github.com/vaadin/vaadin-gradle-plugin).
 
-Both the [development and production modes](https://vaadin.com/docs/v14/flow/production/tutorial-production-mode-basic.html) are supported.
+Both the [development and production modes](https://vaadin.com/docs/flow/production/tutorial-production-mode-basic.html) are supported.
 To prepare for development mode, just run:
 
 ```bash
