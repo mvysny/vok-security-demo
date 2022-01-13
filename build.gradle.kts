@@ -54,7 +54,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // db
-    implementation("com.zaxxer:HikariCP:4.0.3") // 5.0.0 is java 11+ only
+    implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:8.4.1")
     implementation("com.h2database:h2:2.0.206")
 
@@ -63,7 +63,7 @@ dependencies {
     testImplementation("com.github.mvysny.dynatest:dynatest:0.22")
 
     // heroku app runner
-    staging("com.heroku:webapp-runner-main:9.0.52.0")
+    staging("com.heroku:webapp-runner-main:9.0.52.1")
 }
 
 java {
