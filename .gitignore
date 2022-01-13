@@ -10,3 +10,4 @@ target
 webpack.generated.js
 pnpmfile.js
 frontend/generated
+.npmrc
