@@ -3,6 +3,7 @@ package com.vaadin.securitydemo
 import com.github.vokorm.KEntity
 import com.github.vokorm.findOneBy
 import com.gitlab.mvysny.jdbiorm.Dao
+import com.gitlab.mvysny.jdbiorm.Table
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.server.VaadinRequest
 import com.vaadin.flow.server.VaadinService
@@ -20,6 +21,7 @@ import javax.security.auth.login.FailedLoginException
  * @property username user name, unique
  * @property roles comma-separated list of roles
  */
+@Table("users")
 data class User(override var id: Long? = null,
                 var username: String = "",
                 override var hashedPassword: String = "",
