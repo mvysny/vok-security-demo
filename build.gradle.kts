@@ -91,4 +91,5 @@ vaadin {
     if (gradle.startParameter.taskNames.contains("stage")) {
         productionMode = true
     }
+    nodeVersion = "v16.13.2"
 }
