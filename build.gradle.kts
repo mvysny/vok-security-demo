@@ -91,5 +91,5 @@ vaadin {
     if (gradle.startParameter.taskNames.contains("stage")) {
         productionMode = true
     }
-    nodeVersion = "v16.13.2"
+    nodeVersion = "v16.13.2" // workaround for https://github.com/vaadin/flow/issues/12732
 }
