@@ -2,6 +2,7 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.dynatest.DynaTest
+import com.github.mvysny.dynatest.DynaTestDsl
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.component.login.LoginForm
@@ -46,6 +47,7 @@ class AdminViewTest : DynaTest({
 
 private val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
 
+@DynaTestDsl
 fun DynaNodeGroup.usingApp() {
     beforeGroup {
         Bootstrap().contextInitialized(null)

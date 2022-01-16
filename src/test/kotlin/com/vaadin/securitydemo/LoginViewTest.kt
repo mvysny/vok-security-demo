@@ -27,7 +27,7 @@ class LoginViewTest : DynaTest({
         expect(true) { Session.loginManager.isLoggedIn }
         _expectNone<LoginView>()
         // after successful login the WelcomeView should be displayed
-        _get<WelcomeView>()
+        _expectOne<WelcomeView>()
     }
 
     test("error route not hijacked by the LoginView") {

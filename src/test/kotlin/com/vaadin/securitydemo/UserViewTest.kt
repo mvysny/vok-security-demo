@@ -2,7 +2,6 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.kaributesting.v10._expectOne
-import com.github.mvysny.kaributesting.v10._get
 import com.github.mvysny.kaributools.navigateTo
 
 /**
