@@ -58,7 +58,7 @@ dependencies {
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:8.4.1")
-    implementation("com.h2database:h2:2.0.206")
+    implementation("com.h2database:h2:2.1.210")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v10:1.3.9")
