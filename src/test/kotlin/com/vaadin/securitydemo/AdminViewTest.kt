@@ -3,9 +3,11 @@ package com.vaadin.securitydemo
 import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.dynatest.DynaTestDsl
+import com.github.mvysny.dynatest.expectThrows
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.flow.router.NotFoundException
 import eu.vaadinonkotlin.vaadin.Session
 
 /**
@@ -39,9 +41,9 @@ class AdminViewTest : DynaTest({
     test("User should not see AdminView") {
         login("user")
         // this should not be allowed for security reasons:
-        navigateTo<AdminView>()
-        // expect that the login view is shown
-        _expectOne<LoginView>()
+        expectThrows<NotFoundException>("No route found for 'admin': No route found for 'admin'") {
+            navigateTo<AdminView>()
+        }
     }
 })
 
