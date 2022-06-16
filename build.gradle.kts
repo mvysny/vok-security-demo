@@ -15,7 +15,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
 }
 
 gretty {
