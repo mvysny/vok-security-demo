@@ -7,7 +7,7 @@ local.properties
 out
 node_modules
 target
-webpack.generated.js
+vite.generated.ts
 pnpmfile.js
 frontend/generated
 .npmrc
