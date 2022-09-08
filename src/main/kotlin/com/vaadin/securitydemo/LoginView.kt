@@ -26,18 +26,20 @@ class LoginView : KComposite() {
                 header.title = "VoK Security Demo"
                 additionalInformation = "Log in as user/user or admin/admin"
             }
-            loginForm = loginForm(loginI18n) {
-                addLoginListener { e ->
-                    try {
-                        Session.loginManager.login(e.username, e.password)
-                    } catch (e: LoginException) {
-                        log.warn("Login failed", e)
-                        setErrorMessage("Login failed", e.message)
-                    } catch (e: Exception) {
-                        log.warn("Login failed", e)
-                        setErrorMessage("Login failed", e.message)
-                    }
-                }
+            loginForm = loginForm(loginI18n)
+        }
+    }
+
+    init {
+        loginForm.addLoginListener { e ->
+            try {
+                Session.loginManager.login(e.username, e.password)
+            } catch (e: LoginException) {
+                log.warn("Login failed", e)
+                loginForm.setErrorMessage("Login failed", e.message)
+            } catch (e: Exception) {
+                log.error("Internal error", e)
+                loginForm.setErrorMessage("Internal error", e.message)
             }
         }
     }
