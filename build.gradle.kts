@@ -5,7 +5,7 @@ val vaadinonkotlin_version = "0.13.0"
 val vaadin_version = "23.2.1"
 
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
     id("org.gretty") version "3.0.6"
     war
     id("com.vaadin") version "23.2.1"
@@ -55,10 +55,10 @@ dependencies {
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("org.flywaydb:flyway-core:8.5.12")
-    implementation("com.h2database:h2:2.1.212")
+    implementation("com.h2database:h2:2.1.214")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.20")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.21")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 
     // heroku app runner
