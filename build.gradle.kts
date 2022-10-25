@@ -22,8 +22,6 @@ gretty {
     servletContainer = "jetty9.4"
 }
 
-val staging by configurations.creating
-
 tasks.withType<KotlinCompile> {
     // Vaadin 23 requires JDK 11+ anyway
     kotlinOptions.jvmTarget = "11"
@@ -60,9 +58,6 @@ dependencies {
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:1.3.21")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
-
-    // heroku app runner
-    staging("com.heroku:webapp-runner-main:9.0.52.1")
 }
 
 java {
@@ -71,21 +66,3 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-// Heroku
-tasks {
-    val copyToLib by registering(Copy::class) {
-        into("$buildDir/server")
-        from(staging) {
-            include("webapp-runner*")
-        }
-    }
-    val stage by registering {
-        dependsOn("build", copyToLib)
-    }
-}
-
-vaadin {
-    if (gradle.startParameter.taskNames.contains("stage")) {
-        productionMode = true
-    }
-}
