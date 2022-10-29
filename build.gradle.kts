@@ -6,8 +6,7 @@ val vaadin_version = "23.2.6"
 
 plugins {
     kotlin("jvm") version "1.7.20"
-    id("org.gretty") version "3.0.6"
-    war
+    id("application")
     id("com.vaadin") version "23.2.6"
 }
 
@@ -15,11 +14,6 @@ defaultTasks("clean", "build")
 
 repositories {
     mavenCentral()
-}
-
-gretty {
-    contextPath = "/"
-    servletContainer = "jetty9.4"
 }
 
 tasks.withType<KotlinCompile> {
@@ -36,12 +30,11 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    // Vaadin-on-Kotlin dependency
+    // Vaadin
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("eu.vaadinonkotlin:vok-security:$vaadinonkotlin_version")
-    // Vaadin 14
     implementation("com.vaadin:vaadin-core:$vaadin_version")
-    providedCompile("javax.servlet:javax.servlet-api:4.0.1")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:10.1")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
@@ -66,3 +59,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+application {
+    mainClass.set("com.vaadin.securitydemo.MainKt")
+}
