@@ -7,6 +7,8 @@
 Demonstrates the security aspect of the Vaadin-on-Kotlin framework. For a general information on
 VoK Security please head to the [vok-security module documentation](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/README.md).
 
+The project [online demo](https://v-herd.eu/vok-security-demo).
+
 # Preparing Environment
 
 Please see the [Vaadin Boot](https://github.com/mvysny/vaadin-boot#preparing-environment) documentation
