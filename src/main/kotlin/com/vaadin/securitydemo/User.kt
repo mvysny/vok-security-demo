@@ -105,4 +105,4 @@ class LoginManager: Serializable {
 /**
  * This code will tie the [LoginManager] to the session. Make sure to always ask for the login manager via this property, never create it yourself.
  */
-val Session.loginManager: LoginManager get() = getOrPut { LoginManager() }
+val Session.loginManager: LoginManager get() = getOrPut(LoginManager::class) { LoginManager() }
