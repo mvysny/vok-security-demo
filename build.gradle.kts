@@ -24,7 +24,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
-        // to see the exceptions of failed tests in Travis-CI console.
+        // to see the stacktraces of failed tests in the CI console.
         exceptionFormat = TestExceptionFormat.FULL
     }
 }
@@ -38,13 +38,13 @@ dependencies {
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
-    implementation("org.slf4j:slf4j-simple:2.0.0")
+    implementation("org.slf4j:slf4j-simple:2.0.4")
 
     implementation(kotlin("stdlib-jdk8"))
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.5.1")
+    implementation("org.flywaydb:flyway-core:9.8.2")
     implementation("com.h2database:h2:2.1.214")
 
     // test support
