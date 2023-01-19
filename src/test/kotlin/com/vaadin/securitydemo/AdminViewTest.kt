@@ -14,7 +14,7 @@ import eu.vaadinonkotlin.vaadin.Session
  * Mocks the UI and logs in given user.
  */
 fun login(username: String) {
-    Session.loginManager.login(username, username)
+    Session.loginService.login(username, username)
     // check that there is no LoginForm and everything is prepared
     _expectNone<LoginForm>()
     // in fact, by default the WelcomeView should be displayed

@@ -17,14 +17,14 @@ class LoginViewTest : DynaTest({
     test("unsuccessful login") {
         _expectOne<LoginView>() // check that initially the LoginView is displayed
         _get<LoginForm>()._login("invaliduser", "invaliduser")
-        expect(false) { Session.loginManager.isLoggedIn }
+        expect(false) { Session.loginService.isLoggedIn }
         expect(true) { _get<LoginForm>().isError }
     }
 
     test("successful login") {
         _expectOne<LoginView>() // check that initially the LoginView is displayed
         _get<LoginForm>()._login("user", "user")
-        expect(true) { Session.loginManager.isLoggedIn }
+        expect(true) { Session.loginService.isLoggedIn }
         _expectNone<LoginView>()
         // after successful login the WelcomeView should be displayed
         _expectOne<WelcomeView>()

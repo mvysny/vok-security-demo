@@ -38,7 +38,7 @@ class MainLayout : KComposite(), RouterLayout {
                     routerLink(VaadinIcon.LIST, "User", UserView::class)
                     routerLink(VaadinIcon.COG, "Admin", AdminView::class)
                     button("Log Out", VaadinIcon.SIGN_OUT.create()) {
-                        onLeftClick { Session.loginManager.logout() }
+                        onLeftClick { Session.loginService.logout() }
                     }
                 }
             }

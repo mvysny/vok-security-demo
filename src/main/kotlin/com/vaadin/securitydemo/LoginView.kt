@@ -4,7 +4,6 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
-import com.vaadin.flow.router.BeforeEnterEvent
 import com.vaadin.flow.router.Route
 import eu.vaadinonkotlin.vaadin.Session
 import org.slf4j.LoggerFactory
@@ -33,7 +32,7 @@ class LoginView : KComposite() {
     init {
         loginForm.addLoginListener { e ->
             try {
-                Session.loginManager.login(e.username, e.password)
+                Session.loginService.login(e.username, e.password)
             } catch (e: LoginException) {
                 log.warn("Login failed", e)
                 loginForm.setErrorMessage("Login failed", e.message)
