@@ -1,8 +1,9 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.security
 
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.server.VaadinRequest
 import com.vaadin.flow.server.VaadinService
+import com.vaadin.securitydemo.welcome.WelcomeView
 import eu.vaadinonkotlin.security.BasicUserPrincipal
 import eu.vaadinonkotlin.vaadin.Session
 import java.io.Serializable

@@ -8,6 +8,9 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.securitydemo.admin.AdminRoute
+import com.vaadin.securitydemo.security.loginService
+import com.vaadin.securitydemo.user.UserView
+import com.vaadin.securitydemo.welcome.WelcomeView
 import eu.vaadinonkotlin.vaadin.Session
 import javax.annotation.security.PermitAll
 

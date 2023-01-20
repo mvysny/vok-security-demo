@@ -1,11 +1,13 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.login
 
 import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.securitydemo.welcome.WelcomeView
 import com.vaadin.securitydemo.admin.usingApp
+import com.vaadin.securitydemo.security.loginService
 import eu.vaadinonkotlin.vaadin.Session
 import kotlin.test.expect
 

@@ -1,11 +1,10 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.security
 
 import com.github.vokorm.KEntity
 import com.github.vokorm.findOneBy
 import com.gitlab.mvysny.jdbiorm.Dao
 import com.gitlab.mvysny.jdbiorm.Table
 import eu.vaadinonkotlin.security.simple.HasPassword
-import eu.vaadinonkotlin.vaadin.Session
 
 /**
  * Represents a user. Stored in a database; see [KEntity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.

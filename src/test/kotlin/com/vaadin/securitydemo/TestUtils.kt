@@ -3,6 +3,8 @@ package com.vaadin.securitydemo
 import com.github.mvysny.kaributesting.v10._expectNone
 import com.github.mvysny.kaributesting.v10._expectOne
 import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.securitydemo.security.loginService
+import com.vaadin.securitydemo.welcome.WelcomeView
 import eu.vaadinonkotlin.vaadin.Session
 
 /**

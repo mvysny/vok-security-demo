@@ -6,7 +6,7 @@ import com.github.vokorm.dataloader.dataLoader
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
-import com.vaadin.securitydemo.User
+import com.vaadin.securitydemo.security.User
 import eu.vaadinonkotlin.vaadin.*
 import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 import javax.annotation.security.RolesAllowed

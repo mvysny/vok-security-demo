@@ -1,8 +1,9 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.welcome
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
 import com.vaadin.flow.router.Route
+import com.vaadin.securitydemo.MainLayout
 import javax.annotation.security.PermitAll
 
 /**

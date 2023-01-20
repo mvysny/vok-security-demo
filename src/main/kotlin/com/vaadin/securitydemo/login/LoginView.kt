@@ -1,10 +1,11 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.login
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
 import com.vaadin.flow.router.Route
+import com.vaadin.securitydemo.security.loginService
 import eu.vaadinonkotlin.vaadin.Session
 import org.slf4j.LoggerFactory
 import javax.security.auth.login.LoginException
@@ -22,7 +23,8 @@ class LoginView : KComposite() {
             setSizeFull(); isPadding = false; content { center() }
 
             val loginI18n: LoginI18n = loginI18n {
-                header.title = "VoK Security Demo" // doesn't work at the moment: https://github.com/vaadin/flow/issues/15729
+                header.title =
+                    "VoK Security Demo" // doesn't work at the moment: https://github.com/vaadin/flow/issues/15729
                 additionalInformation = "Log in as user/user or admin/admin"
             }
             loginForm = loginForm(loginI18n)

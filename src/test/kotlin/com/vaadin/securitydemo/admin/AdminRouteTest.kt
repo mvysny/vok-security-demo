@@ -10,8 +10,8 @@ import com.github.mvysny.kaributesting.v10._expectOne
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.router.NotFoundException
 import com.vaadin.securitydemo.Bootstrap
-import com.vaadin.securitydemo.LoginView
-import com.vaadin.securitydemo.User
+import com.vaadin.securitydemo.login.LoginView
+import com.vaadin.securitydemo.security.User
 import com.vaadin.securitydemo.login
 
 /**
