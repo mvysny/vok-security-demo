@@ -27,9 +27,7 @@ private val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
 
 @DynaTestDsl
 fun DynaNodeGroup.usingApp() {
-    beforeGroup {
-        Bootstrap().contextInitialized(null)
-    }
+    beforeGroup { Bootstrap().contextInitialized(null) }
     afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
     beforeEach { MockVaadin.setup(routes) }
     afterEach { MockVaadin.tearDown() }
