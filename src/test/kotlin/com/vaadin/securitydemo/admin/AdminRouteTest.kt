@@ -1,18 +1,13 @@
 package com.vaadin.securitydemo.admin
 
-import com.github.mvysny.dynatest.DynaNodeGroup
 import com.github.mvysny.dynatest.DynaTest
-import com.github.mvysny.dynatest.DynaTestDsl
 import com.github.mvysny.dynatest.expectThrows
-import com.github.mvysny.kaributesting.v10.MockVaadin
-import com.github.mvysny.kaributesting.v10.Routes
 import com.github.mvysny.kaributesting.v10._expectOne
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.router.NotFoundException
-import com.vaadin.securitydemo.Bootstrap
-import com.vaadin.securitydemo.security.LoginRoute
-import com.vaadin.securitydemo.security.User
 import com.vaadin.securitydemo.login
+import com.vaadin.securitydemo.security.LoginRoute
+import com.vaadin.securitydemo.usingApp
 
 /**
  * Uses the [Karibu-Testing](https://github.com/mvysny/karibu-testing) library to test Vaadin-based apps.
@@ -39,15 +34,3 @@ class AdminRouteTest : DynaTest({
         }
     }
 })
-
-private val routes = Routes().autoDiscoverViews("com.vaadin.securitydemo")
-
-@DynaTestDsl
-fun DynaNodeGroup.usingApp() {
-    beforeGroup {
-        Bootstrap().contextInitialized(null)
-    }
-    afterGroup { User.deleteAll(); Bootstrap().contextDestroyed(null) }
-    beforeEach { MockVaadin.setup(routes) }
-    afterEach { MockVaadin.tearDown() }
-}
