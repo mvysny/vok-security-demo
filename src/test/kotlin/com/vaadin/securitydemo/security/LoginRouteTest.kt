@@ -27,8 +27,9 @@ class LoginRouteTest : DynaTest({
         _expectOne<LoginRoute>() // check that initially the LoginView is displayed
         _get<LoginForm>()._login("user", "user")
         expect(true) { Session.loginService.isLoggedIn }
-        _expectNone<LoginRoute>()
+
         // after successful login the WelcomeView should be displayed
+        _expectNone<LoginRoute>()
         _expectOne<WelcomeRoute>()
     }
 
