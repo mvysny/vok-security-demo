@@ -17,7 +17,7 @@ import javax.annotation.security.PermitAll
  */
 @Route("", layout = MainLayout::class)
 @PermitAll
-class WelcomeView : KComposite() {
+class WelcomeRoute : KComposite() {
     private val root = ui {
         verticalLayout {
             setSizeFull(); isPadding = false

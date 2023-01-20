@@ -2,7 +2,7 @@ package com.vaadin.securitydemo
 
 import com.vaadin.flow.server.ServiceInitEvent
 import com.vaadin.flow.server.VaadinServiceInitListener
-import com.vaadin.securitydemo.security.LoginView
+import com.vaadin.securitydemo.security.LoginRoute
 import eu.vaadinonkotlin.security.VokViewAccessChecker
 
 /**
@@ -11,7 +11,7 @@ import eu.vaadinonkotlin.security.VokViewAccessChecker
 class AppServiceInitListener : VaadinServiceInitListener {
     private val checker = VokViewAccessChecker()
     init {
-        checker.setLoginView(LoginView::class.java)
+        checker.setLoginView(LoginRoute::class.java)
     }
 
     override fun serviceInit(e: ServiceInitEvent) {

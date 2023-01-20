@@ -3,7 +3,7 @@ package com.vaadin.securitydemo.security
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.server.VaadinRequest
 import com.vaadin.flow.server.VaadinService
-import com.vaadin.securitydemo.welcome.WelcomeView
+import com.vaadin.securitydemo.welcome.WelcomeRoute
 import eu.vaadinonkotlin.security.BasicUserPrincipal
 import eu.vaadinonkotlin.vaadin.Session
 import java.io.Serializable
@@ -56,7 +56,7 @@ class LoginService: Serializable {
         // navigate the user away from the LoginView and to the landing page.
         // all logged-in users must be able to see the landing page, otherwise they will
         // be redirected back to the LoginView.
-        UI.getCurrent().navigate(WelcomeView::class.java)
+        UI.getCurrent().navigate(WelcomeRoute::class.java)
     }
 
     /**

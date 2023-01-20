@@ -13,7 +13,7 @@ import javax.annotation.security.RolesAllowed
  */
 @Route("user", layout = MainLayout::class)
 @RolesAllowed("ROLE_USER", "ROLE_ADMIN")
-class UserView : KComposite() {
+class UserRoute : KComposite() {
     private val root = ui {
         verticalLayout {
             h1("Important content for users")

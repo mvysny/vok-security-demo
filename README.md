@@ -39,6 +39,6 @@ will not perform the re-route to the login view; instead it will show the applic
 
 There are four views:
 
-* The [WelcomeView](src/main/kotlin/com/vaadin/securitydemo/welcome/WelcomeView.kt) which is accessible by all logged-in users;
-* The [UserView](src/main/kotlin/com/vaadin/securitydemo/user/UserView.kt) which is accessible by all users with roles `user` and `admin`
-* The [AdminView](src/main/kotlin/com/vaadin/securitydemo/admin/AdminView.kt) which is accessible by users with the `admin` role only
+* The [WelcomeRoute](src/main/kotlin/com/vaadin/securitydemo/welcome/WelcomeRoute.kt) which is accessible by all logged-in users;
+* The [UserRoute](src/main/kotlin/com/vaadin/securitydemo/user/UserRoute.kt) which is accessible by all users with roles `ROLE_USER` and `ROLE_ADMIN`
+* The [AdminRoute](src/main/kotlin/com/vaadin/securitydemo/admin/AdminRoute.kt) which is accessible by users with the `ROLE_ADMIN` role only

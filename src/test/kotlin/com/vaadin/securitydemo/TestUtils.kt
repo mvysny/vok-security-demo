@@ -4,7 +4,7 @@ import com.github.mvysny.kaributesting.v10._expectNone
 import com.github.mvysny.kaributesting.v10._expectOne
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.securitydemo.security.loginService
-import com.vaadin.securitydemo.welcome.WelcomeView
+import com.vaadin.securitydemo.welcome.WelcomeRoute
 import eu.vaadinonkotlin.vaadin.Session
 
 /**
@@ -15,5 +15,5 @@ fun login(username: String) {
     // check that there is no LoginForm and everything is prepared
     _expectNone<LoginForm>()
     // in fact, by default the WelcomeView should be displayed
-    _expectOne<WelcomeView>()
+    _expectOne<WelcomeRoute>()
 }

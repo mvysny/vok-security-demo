@@ -17,7 +17,7 @@ import javax.security.auth.login.LoginException
  */
 @Route("login")
 @AnonymousAllowed
-class LoginView : KComposite() {
+class LoginRoute : KComposite() {
     private lateinit var loginForm: LoginForm
     private val root = ui {
         verticalLayout {
@@ -48,6 +48,6 @@ class LoginView : KComposite() {
 
     companion object {
         @JvmStatic
-        private val log = LoggerFactory.getLogger(LoginView::class.java)
+        private val log = LoggerFactory.getLogger(LoginRoute::class.java)
     }
 }

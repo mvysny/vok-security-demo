@@ -10,7 +10,7 @@ import com.github.mvysny.kaributesting.v10._expectOne
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.router.NotFoundException
 import com.vaadin.securitydemo.Bootstrap
-import com.vaadin.securitydemo.security.LoginView
+import com.vaadin.securitydemo.security.LoginRoute
 import com.vaadin.securitydemo.security.User
 import com.vaadin.securitydemo.login
 
@@ -22,7 +22,7 @@ class AdminRouteTest : DynaTest({
 
     test("logged out user should not be able to see AdminView") {
         navigateTo<AdminRoute>()
-        _expectOne<LoginView>()
+        _expectOne<LoginRoute>()
     }
 
     test("Admin should see AdminView properly") {
