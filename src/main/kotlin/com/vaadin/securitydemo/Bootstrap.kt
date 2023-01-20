@@ -80,4 +80,3 @@ class Bootstrap: ServletContextListener {
 
 @PWA(name = "VoK Security Demo", shortName = "VoK Security Demo")
 class AppShell: AppShellConfigurator
-
