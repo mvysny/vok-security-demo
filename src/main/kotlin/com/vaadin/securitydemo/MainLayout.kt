@@ -27,12 +27,6 @@ class MainLayout : KComposite(), RouterLayout {
             navbar {
                 drawerToggle()
                 h3("Vaadin Kotlin Security Demo")
-                button(icon = VaadinIcon.FILE_REMOVE.create()) {
-                    addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_ICON)
-                    onLeftClick {
-                        Notification.show("A toast!", 3000, Notification.Position.BOTTOM_CENTER)
-                    }
-                }
             }
 
             drawer {
