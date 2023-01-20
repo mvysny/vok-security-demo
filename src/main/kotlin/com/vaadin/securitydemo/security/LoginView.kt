@@ -1,11 +1,10 @@
-package com.vaadin.securitydemo.login
+package com.vaadin.securitydemo.security
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
 import com.vaadin.flow.router.Route
-import com.vaadin.securitydemo.security.loginService
 import eu.vaadinonkotlin.vaadin.Session
 import org.slf4j.LoggerFactory
 import javax.security.auth.login.LoginException

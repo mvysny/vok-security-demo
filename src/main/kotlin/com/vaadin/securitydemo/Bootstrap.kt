@@ -4,7 +4,7 @@ import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.server.PWA
 import com.vaadin.flow.server.ServiceInitEvent
 import com.vaadin.flow.server.VaadinServiceInitListener
-import com.vaadin.securitydemo.login.LoginView
+import com.vaadin.securitydemo.security.LoginView
 import com.vaadin.securitydemo.security.User
 import com.vaadin.securitydemo.security.loginService
 import com.zaxxer.hikari.HikariConfig
