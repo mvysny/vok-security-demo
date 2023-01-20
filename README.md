@@ -4,8 +4,8 @@
 
 # Vaadin-on-Kotlin Security Demo for Vaadin
 
-Demonstrates the security aspect of the Vaadin-on-Kotlin framework. For general information on
-VoK Security please head to the [vok-security module documentation](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/README.md).
+Demonstrates a secured Vaadin-on-Kotlin-based application. Uses [Vaadin Simple Security](https://github.com/mvysny/vaadin-simple-security)
+library.
 
 The project [online demo](https://v-herd.eu/vok-security-demo).
 
