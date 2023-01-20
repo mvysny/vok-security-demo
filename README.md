@@ -28,7 +28,7 @@ There are two users pre-created by the [Bootstrap](src/main/kotlin/com/vaadin/se
 The [AppServiceInitListener](src/main/kotlin/com/vaadin/securitydemo/AppServiceInitListener.kt) configures
 Vaadin to check authorization and redirects to the Login route if there's no user logged in.
 The username and password are compared against the database. The `User` class takes advantage
-of the [HasPassword](https://github.com/mvysny/vaadin-on-kotlin/blob/master/vok-security/src/main/kotlin/com/github/vok/security/simple/HasPassword.kt)
+of the `HasPassword`
 mixin which makes sure to store the passwords in a hashed form.
 
 If the login succeeds, the user is then stored into the session (or, rather, the `LoginService` class
