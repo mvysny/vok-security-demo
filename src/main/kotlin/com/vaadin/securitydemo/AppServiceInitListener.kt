@@ -1,15 +1,17 @@
 package com.vaadin.securitydemo
 
+import com.github.mvysny.vaadinsimplesecurity.SimpleViewAccessChecker
 import com.vaadin.flow.server.ServiceInitEvent
 import com.vaadin.flow.server.VaadinServiceInitListener
 import com.vaadin.securitydemo.security.LoginRoute
-import eu.vaadinonkotlin.security.VokViewAccessChecker
+import com.vaadin.securitydemo.security.loginService
+import eu.vaadinonkotlin.vaadin.Session
 
 /**
  * Checks security and redirects to the LoginView if need be.
  */
 class AppServiceInitListener : VaadinServiceInitListener {
-    private val checker = VokViewAccessChecker()
+    private val checker = SimpleViewAccessChecker.usingService { Session.loginService }
     init {
         checker.setLoginView(LoginRoute::class.java)
     }

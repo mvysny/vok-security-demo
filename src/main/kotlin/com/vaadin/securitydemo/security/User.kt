@@ -1,10 +1,10 @@
 package com.vaadin.securitydemo.security
 
+import com.github.mvysny.vaadinsimplesecurity.HasPassword
 import com.github.vokorm.KEntity
 import com.github.vokorm.findOneBy
 import com.gitlab.mvysny.jdbiorm.Dao
 import com.gitlab.mvysny.jdbiorm.Table
-import eu.vaadinonkotlin.security.simple.HasPassword
 
 /**
  * Represents a user. Stored in a database; see [KEntity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.
@@ -16,7 +16,7 @@ import eu.vaadinonkotlin.security.simple.HasPassword
 @Table("users")
 data class User(override var id: Long? = null,
                 var username: String = "",
-                override var hashedPassword: String = "",
+                private var hashedPassword: String = "",
                 var roles: String = "") : KEntity<Long>, HasPassword {
     companion object : Dao<User, Long>(User::class.java) {
         /**
@@ -24,4 +24,12 @@ data class User(override var id: Long? = null,
          */
         fun findByUsername(username: String): User? = findOneBy { User::username eq username }
     }
+
+    override fun getHashedPassword(): String = hashedPassword
+
+    override fun setHashedPassword(hashedPassword: String) {
+        this.hashedPassword = hashedPassword
+    }
+
+    val roleSet: Set<String> get() = roles.split(",").toSet()
 }

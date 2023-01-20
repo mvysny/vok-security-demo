@@ -7,8 +7,6 @@ import com.vaadin.securitydemo.security.loginService
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
-import eu.vaadinonkotlin.security.LoggedInUserResolver
-import eu.vaadinonkotlin.security.loggedInUserResolver
 import eu.vaadinonkotlin.vaadin.Session
 import eu.vaadinonkotlin.vokdb.dataSource
 import org.flywaydb.core.Flyway
@@ -52,10 +50,7 @@ class Bootstrap: ServletContextListener {
         flyway.migrate()
 
         // setup security
-        VaadinOnKotlin.loggedInUserResolver = object : LoggedInUserResolver {
-            override fun getCurrentUser(): Principal? = Session.loginService.getPrincipal()
-            override fun getCurrentUserRoles(): Set<String> = Session.loginService.getCurrentUserRoles()
-        }
+        // security interceptor is configured in AppServiceInitListener
         User(username = "admin", roles = "ROLE_ADMIN,ROLE_USER").apply { setPassword("admin"); save() }
         User(username = "user", roles = "ROLE_USER").apply { setPassword("user"); save() }
 

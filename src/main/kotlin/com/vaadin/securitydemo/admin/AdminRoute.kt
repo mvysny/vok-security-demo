@@ -38,7 +38,7 @@ class AdminRoute : KComposite() {
                 columnFor(User::roles) {
                     filterBar.forField(TextField(), this).istartsWith()
                 }
-                columnFor(User::hashedPassword)
+                addColumn { it.hashedPassword } .setHeader("Hashed Password")
             }
         }
     }

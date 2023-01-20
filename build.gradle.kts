@@ -33,7 +33,7 @@ dependencies {
     // Vaadin-related dependencies
     implementation("com.vaadin:vaadin-core:$vaadin_version")
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
-    implementation("eu.vaadinonkotlin:vok-security:$vaadinonkotlin_version")
+    implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:10.1")
 
     // logging
