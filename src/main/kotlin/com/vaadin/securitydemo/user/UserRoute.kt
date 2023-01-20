@@ -4,6 +4,7 @@ import com.github.mvysny.karibudsl.v10.KComposite
 import com.github.mvysny.karibudsl.v10.h1
 import com.github.mvysny.karibudsl.v10.text
 import com.github.mvysny.karibudsl.v10.verticalLayout
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
 import javax.annotation.security.RolesAllowed
@@ -12,6 +13,7 @@ import javax.annotation.security.RolesAllowed
  * Demoes a view intended for both users and admins.
  */
 @Route("user", layout = MainLayout::class)
+@PageTitle("User Content")
 @RolesAllowed("ROLE_USER", "ROLE_ADMIN")
 class UserRoute : KComposite() {
     private val root = ui {

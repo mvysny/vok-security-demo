@@ -2,6 +2,7 @@ package com.vaadin.securitydemo.welcome
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
+import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
 import javax.annotation.security.PermitAll
@@ -16,6 +17,7 @@ import javax.annotation.security.PermitAll
  * create an app-wide layout which hosts views.
  */
 @Route("", layout = MainLayout::class)
+@PageTitle("Welcome")
 @PermitAll
 class WelcomeRoute : KComposite() {
     private val root = ui {
@@ -23,7 +25,7 @@ class WelcomeRoute : KComposite() {
             setSizeFull(); isPadding = false
             content { align(center, middle) }
 
-            h1("Yay! You're on Vaadin-on-Kotlin!")
+            h1("Welcome!")
             text("This is a welcome view for all users; all logged-in users can see this content")
             div { html("<strong>Vaadin version: </strong> ${VaadinVersion.get}") }
             div { html("<strong>Kotlin version: </strong> ${KotlinVersion.CURRENT}") }
