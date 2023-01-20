@@ -1,1 +1,1 @@
-com.vaadin.securitydemo.VaadinServiceInitListener
+com.vaadin.securitydemo.AppServiceInitListener

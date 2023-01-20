@@ -15,7 +15,7 @@ import javax.annotation.security.RolesAllowed
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.
  */
 @Route("admin", layout = MainLayout::class)
-@RolesAllowed("admin")
+@RolesAllowed("ROLE_ADMIN")
 class AdminRoute : KComposite() {
     private val root = ui {
         verticalLayout {

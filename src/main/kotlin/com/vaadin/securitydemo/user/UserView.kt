@@ -12,7 +12,7 @@ import javax.annotation.security.RolesAllowed
  * Demoes a view intended for both users and admins.
  */
 @Route("user", layout = MainLayout::class)
-@RolesAllowed("user", "admin")
+@RolesAllowed("ROLE_USER", "ROLE_ADMIN")
 class UserView : KComposite() {
     private val root = ui {
         verticalLayout {

@@ -2,16 +2,12 @@ package com.vaadin.securitydemo
 
 import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.server.PWA
-import com.vaadin.flow.server.ServiceInitEvent
-import com.vaadin.flow.server.VaadinServiceInitListener
-import com.vaadin.securitydemo.security.LoginView
 import com.vaadin.securitydemo.security.User
 import com.vaadin.securitydemo.security.loginService
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
 import eu.vaadinonkotlin.security.LoggedInUserResolver
-import eu.vaadinonkotlin.security.VokViewAccessChecker
 import eu.vaadinonkotlin.security.loggedInUserResolver
 import eu.vaadinonkotlin.vaadin.Session
 import eu.vaadinonkotlin.vokdb.dataSource
@@ -60,8 +56,8 @@ class Bootstrap: ServletContextListener {
             override fun getCurrentUser(): Principal? = Session.loginService.getPrincipal()
             override fun getCurrentUserRoles(): Set<String> = Session.loginService.getCurrentUserRoles()
         }
-        User(username = "admin", roles = "admin,user").apply { setPassword("admin"); save() }
-        User(username = "user", roles = "user").apply { setPassword("user"); save() }
+        User(username = "admin", roles = "ROLE_ADMIN,ROLE_USER").apply { setPassword("admin"); save() }
+        User(username = "user", roles = "ROLE_USER").apply { setPassword("user"); save() }
 
         log.info("Initialization complete")
     } catch (t: Throwable) {
@@ -85,15 +81,3 @@ class Bootstrap: ServletContextListener {
 @PWA(name = "VoK Security Demo", shortName = "VoK Security Demo")
 class AppShell: AppShellConfigurator
 
-/**
- * Checks security and redirects to the LoginView if need be.
- */
-class VaadinServiceInitListener : VaadinServiceInitListener {
-    override fun serviceInit(e: ServiceInitEvent) {
-        e.source.addUIInitListener { uiInitEvent ->
-            val checker = VokViewAccessChecker()
-            checker.setLoginView(LoginView::class.java)
-            uiInitEvent.ui.addBeforeEnterListener(checker)
-        }
-    }
-}
