@@ -19,8 +19,6 @@ class MainLayout : KComposite(), RouterLayout {
     private lateinit var contentPane: Div
     private val root = ui {
         appLayout {
-            isDrawerOpened = false
-
             navbar {
                 drawerToggle()
                 h3("Vaadin Kotlin Security Demo")
