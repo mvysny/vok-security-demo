@@ -1,10 +1,12 @@
-package com.vaadin.securitydemo
+package com.vaadin.securitydemo.admin
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.vokdataloader.Filter
 import com.github.vokorm.dataloader.dataLoader
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.Route
+import com.vaadin.securitydemo.MainLayout
+import com.vaadin.securitydemo.User
 import eu.vaadinonkotlin.vaadin.*
 import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
 import javax.annotation.security.RolesAllowed
@@ -14,7 +16,7 @@ import javax.annotation.security.RolesAllowed
  */
 @Route("admin", layout = MainLayout::class)
 @RolesAllowed("admin")
-class AdminView : KComposite() {
+class AdminRoute : KComposite() {
     private val root = ui {
         verticalLayout {
             h1("Administration pages")

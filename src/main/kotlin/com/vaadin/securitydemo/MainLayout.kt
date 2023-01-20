@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.RouterLayout
+import com.vaadin.securitydemo.admin.AdminRoute
 import eu.vaadinonkotlin.vaadin.Session
 import javax.annotation.security.PermitAll
 
@@ -34,7 +35,7 @@ class MainLayout : KComposite(), RouterLayout {
                 verticalLayout {
                     routerLink(VaadinIcon.NEWSPAPER, "Welcome", WelcomeView::class)
                     routerLink(VaadinIcon.LIST, "User", UserView::class)
-                    routerLink(VaadinIcon.COG, "Admin", AdminView::class)
+                    routerLink(VaadinIcon.COG, "Admin", AdminRoute::class)
                     button("Log Out", VaadinIcon.SIGN_OUT.create()) {
                         onLeftClick { Session.loginService.logout() }
                     }

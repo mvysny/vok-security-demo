@@ -5,6 +5,7 @@ import com.github.mvysny.kaributesting.v10.*
 import com.github.mvysny.kaributools.navigateTo
 import com.vaadin.flow.component.UI
 import com.vaadin.flow.component.login.LoginForm
+import com.vaadin.securitydemo.admin.usingApp
 import eu.vaadinonkotlin.vaadin.Session
 import kotlin.test.expect
 
