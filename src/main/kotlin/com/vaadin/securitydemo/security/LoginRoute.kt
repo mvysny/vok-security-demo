@@ -26,8 +26,7 @@ class LoginRoute : KComposite() {
             setSizeFull(); isPadding = false; content { center() }
 
             val loginI18n: LoginI18n = loginI18n {
-                header.title =
-                    "VoK Security Demo" // doesn't work at the moment: https://github.com/vaadin/flow/issues/15729
+                form.title = "VoK Security Demo"
                 additionalInformation = "Log in as user/user or admin/admin"
             }
             loginForm = loginForm(loginI18n)
