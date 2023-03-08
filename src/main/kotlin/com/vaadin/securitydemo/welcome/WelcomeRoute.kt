@@ -5,7 +5,7 @@ import com.github.mvysny.kaributools.VaadinVersion
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
-import javax.annotation.security.PermitAll
+import jakarta.annotation.security.PermitAll
 
 /**
  * The welcome view of the app, visible to all users. It is a vertical layout which lays out the child components vertically.

@@ -2,7 +2,7 @@ package com.vaadin.securitydemo.security
 
 import com.github.mvysny.vaadinsimplesecurity.HasPassword
 import com.github.vokorm.KEntity
-import com.github.vokorm.findOneBy
+import com.github.vokorm.findSingleBy
 import com.gitlab.mvysny.jdbiorm.Dao
 import com.gitlab.mvysny.jdbiorm.Table
 
@@ -22,7 +22,7 @@ data class User(override var id: Long? = null,
         /**
          * Finds user by his [username]. If there is no such user, returns `null`.
          */
-        fun findByUsername(username: String): User? = findOneBy { User::username eq username }
+        fun findByUsername(username: String): User? = findSingleBy { User::username eq username }
     }
 
     override fun getHashedPassword(): String = hashedPassword

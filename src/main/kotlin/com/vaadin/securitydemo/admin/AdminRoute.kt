@@ -10,7 +10,7 @@ import com.vaadin.securitydemo.MainLayout
 import com.vaadin.securitydemo.security.User
 import eu.vaadinonkotlin.vaadin.*
 import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
-import javax.annotation.security.RolesAllowed
+import jakarta.annotation.security.RolesAllowed
 
 /**
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.
