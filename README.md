@@ -5,7 +5,7 @@
 # Vaadin-on-Kotlin Security Demo for Vaadin
 
 Demonstrates a secured Vaadin-on-Kotlin-based application. Uses [Vaadin Simple Security](https://github.com/mvysny/vaadin-simple-security)
-library.
+library. Requires Java 17+.
 
 The project [online demo](https://v-herd.eu/vok-security-demo).
 

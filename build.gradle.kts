@@ -17,8 +17,8 @@ repositories {
 }
 
 tasks.withType<KotlinCompile> {
-    // Vaadin 23 requires JDK 11+ anyway
-    kotlinOptions.jvmTarget = "11"
+    // Vaadin 24 requires JDK 17+
+    kotlinOptions.jvmTarget = "17"
 }
 
 tasks.withType<Test> {
@@ -53,9 +53,9 @@ dependencies {
 }
 
 java {
-    // Vaadin 23 requires JDK 11+
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    // Vaadin 24 requires JDK 17+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 application {
