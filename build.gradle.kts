@@ -2,12 +2,12 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.15.0"
-val vaadin_version = "24.0.3"
+val vaadin_version = "24.0.4"
 
 plugins {
     kotlin("jvm") version "1.8.20"
     id("application")
-    id("com.vaadin") version "24.0.3"
+    id("com.vaadin") version "24.0.4"
 }
 
 defaultTasks("clean", "build")
@@ -40,7 +40,7 @@ dependencies {
     }
     implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
-    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.1")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.2")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
@@ -54,7 +54,7 @@ dependencies {
     implementation("com.h2database:h2:2.1.214")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v23:2.0.2")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.0.2")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 }
 
