@@ -2,17 +2,18 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val vaadinonkotlin_version = "0.15.0"
-val vaadin_version = "24.0.5"
+val vaadin_version = "24.1.0.rc1"
 
 plugins {
     kotlin("jvm") version "1.8.21"
     id("application")
-    id("com.vaadin") version "24.0.5"
+    id("com.vaadin") version "24.1.0.rc1"
 }
 
 defaultTasks("clean", "build")
 
 repositories {
+    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
     mavenCentral()
 }
 
