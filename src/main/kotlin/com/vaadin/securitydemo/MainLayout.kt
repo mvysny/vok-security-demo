@@ -1,12 +1,14 @@
 package com.vaadin.securitydemo
 
 import com.github.mvysny.karibudsl.v10.*
+import com.github.mvysny.karibudsl.v23.route
+import com.github.mvysny.karibudsl.v23.sideNav
 import com.vaadin.flow.component.HasElement
+import com.vaadin.flow.component.button.ButtonVariant
 import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.securitydemo.admin.AdminRoute
-import com.vaadin.securitydemo.components.navMenuBar
 import com.vaadin.securitydemo.security.loginService
 import com.vaadin.securitydemo.user.UserRoute
 import com.vaadin.securitydemo.welcome.WelcomeRoute
@@ -26,11 +28,19 @@ class MainLayout : KComposite(), RouterLayout {
             }
 
             drawer {
-                navMenuBar {
-                    addRoute(VaadinIcon.NEWSPAPER, WelcomeRoute::class)
-                    addRoute(VaadinIcon.LIST, UserRoute::class)
-                    addRoute(VaadinIcon.COG, AdminRoute::class)
-                    addButton(VaadinIcon.SIGN_OUT, "Log Out") { Session.loginService.logout() }
+                sideNav {
+                    route(WelcomeRoute::class, VaadinIcon.NEWSPAPER)
+                    route(UserRoute::class, VaadinIcon.LIST)
+                    route(AdminRoute::class, VaadinIcon.COG)
+                }
+                // logout menu item
+                horizontalLayout(isPadding = true) {
+                    button("Logout", VaadinIcon.SIGN_OUT.create()) {
+                        addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)
+                        onLeftClick {
+                            Session.loginService.logout()
+                        }
+                    }
                 }
             }
             content {

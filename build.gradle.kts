@@ -38,7 +38,10 @@ dependencies {
             }
         }
     }
-    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version")
+    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version") {
+        exclude(group = "com.vaadin")
+    }
+    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:2.0.1")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.3")
 
@@ -54,7 +57,7 @@ dependencies {
     implementation("com.h2database:h2:2.1.214")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.0.2")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.1.0")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 }
 
