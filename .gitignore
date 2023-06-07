@@ -5,9 +5,5 @@ classes
 local.properties
 *.iml
 out
-node_modules
 target
-vite.generated.ts
-pnpmfile.js
 frontend/generated
-.npmrc
