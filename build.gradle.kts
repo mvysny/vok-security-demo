@@ -51,14 +51,14 @@ dependencies {
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
-    implementation("org.slf4j:slf4j-simple:2.0.6")
+    implementation("org.slf4j:slf4j-simple:2.0.7")
 
     implementation(kotlin("stdlib-jdk8"))
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.15.2")
-    implementation("com.h2database:h2:2.1.214")
+    implementation("org.flywaydb:flyway-core:9.16.0")
+    implementation("com.h2database:h2:2.2.220")
 
     // test support
     testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.1.0")
