@@ -1,13 +1,17 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val vaadinonkotlin_version = "0.15.0"
-val vaadin_version = "24.1.0"
+buildscript {
+    // fix for https://github.com/mvysny/vaadin-boot-example-gradle/issues/3
+    dependencies {
+        classpath("com.vaadin:vaadin-prod-bundle:${project.properties["vaadinVersion"]}")
+    }
+}
 
 plugins {
     kotlin("jvm") version "1.8.21"
     id("application")
-    id("com.vaadin") version "24.1.0"
+    id("com.vaadin")
 }
 
 defaultTasks("clean", "build")
@@ -31,17 +35,17 @@ tasks.withType<Test> {
 
 dependencies {
     // Vaadin-related dependencies
-    implementation("com.vaadin:vaadin-core:$vaadin_version") {
+    implementation("com.vaadin:vaadin-core:${properties["vaadinVersion"]}") {
         afterEvaluate {
             if (vaadin.productionMode) {
                 exclude(module = "vaadin-dev")
             }
         }
     }
-    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vaadinonkotlin_version") {
+    implementation("eu.vaadinonkotlin:vok-framework-vokdb:${properties["vokVersion"]}") {
         exclude(group = "com.vaadin")
     }
-    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:2.0.1")
+    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:${properties["karibuDslVersion"]}")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:11.3")
 
