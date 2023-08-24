@@ -34,7 +34,7 @@ class MainLayout : KComposite(), RouterLayout {
                     route(AdminRoute::class, VaadinIcon.COG)
                 }
                 // logout menu item
-                horizontalLayout(isPadding = true) {
+                horizontalLayout(padding = true) {
                     button("Logout", VaadinIcon.SIGN_OUT.create()) {
                         addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)
                         onLeftClick {
