@@ -47,7 +47,7 @@ dependencies {
     }
     implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:${properties["karibuDslVersion"]}")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
-    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.0")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.1")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
