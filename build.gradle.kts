@@ -8,6 +8,10 @@ buildscript {
     }
 }
 
+val vaadinVersion: String by extra
+val vokVersion: String by extra
+val karibuDslVersion: String by extra
+
 plugins {
     kotlin("jvm") version "1.9.20"
     id("application")
@@ -35,17 +39,17 @@ tasks.withType<Test> {
 
 dependencies {
     // Vaadin-related dependencies
-    implementation("com.vaadin:vaadin-core:${properties["vaadinVersion"]}") {
+    implementation("com.vaadin:vaadin-core:$vaadinVersion") {
         afterEvaluate {
             if (vaadin.productionMode) {
                 exclude(module = "vaadin-dev")
             }
         }
     }
-    implementation("eu.vaadinonkotlin:vok-framework-vokdb:${properties["vokVersion"]}") {
+    implementation("eu.vaadinonkotlin:vok-framework-vokdb:$vokVersion") {
         exclude(group = "com.vaadin")
     }
-    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:${properties["karibuDslVersion"]}")
+    implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:$karibuDslVersion")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.1")
 
