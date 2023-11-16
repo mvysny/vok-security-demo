@@ -1,13 +1,6 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    // fix for https://github.com/mvysny/vaadin-boot-example-gradle/issues/3
-    dependencies {
-        classpath("com.vaadin:vaadin-prod-bundle:${project.properties["vaadinVersion"]}")
-    }
-}
-
 val vaadinVersion: String by extra
 val vokVersion: String by extra
 val karibuDslVersion: String by extra
@@ -76,5 +69,5 @@ java {
 }
 
 application {
-    mainClass.set("com.vaadin.securitydemo.MainKt")
+    mainClass = "com.vaadin.securitydemo.MainKt"
 }
