@@ -29,7 +29,7 @@ class AdminRouteTest : DynaTest({
     test("User should not see AdminView") {
         login("user")
         // this should not be allowed for security reasons:
-        expectThrows<NotFoundException>("No route found for 'admin': No route found for 'admin'") {
+        expectThrows<RuntimeException>("Exceptions handled by HasErrorParameter views are") {
             navigateTo<AdminRoute>()
         }
     }

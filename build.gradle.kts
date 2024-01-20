@@ -43,7 +43,7 @@ dependencies {
         exclude(group = "com.vaadin")
     }
     implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:$karibuDslVersion")
-    implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
+    implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:1.0")
     implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.2")
 
     // logging
