@@ -6,7 +6,7 @@ val vokVersion: String by extra
 val karibuDslVersion: String by extra
 
 plugins {
-    kotlin("jvm") version "1.9.20"
+    kotlin("jvm") version "1.9.22"
     id("application")
     id("com.vaadin")
 }
@@ -34,7 +34,7 @@ dependencies {
     // Vaadin-related dependencies
     implementation("com.vaadin:vaadin-core:$vaadinVersion") {
         afterEvaluate {
-            if (vaadin.productionMode) {
+            if (vaadin.productionMode.get()) {
                 exclude(module = "vaadin-dev")
             }
         }
@@ -44,21 +44,21 @@ dependencies {
     }
     implementation("com.github.mvysny.karibudsl:karibu-dsl-v23:$karibuDslVersion")
     implementation("com.github.mvysny.vaadin-simple-security:vaadin-simple-security:0.2")
-    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.1")
+    implementation("com.github.mvysny.vaadin-boot:vaadin-boot:12.2")
 
     // logging
     // currently we are logging through the SLF4J API to SLF4J-Simple. See src/main/resources/simplelogger.properties file for the logger configuration
-    implementation("org.slf4j:slf4j-simple:2.0.7")
+    implementation("org.slf4j:slf4j-simple:2.0.9")
 
     implementation(kotlin("stdlib-jdk8"))
 
     // db
     implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.flywaydb:flyway-core:9.22.1")
+    implementation("org.flywaydb:flyway-core:9.22.3")
     implementation("com.h2database:h2:2.2.224")
 
     // test support
-    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.1.0")
+    testImplementation("com.github.mvysny.kaributesting:karibu-testing-v24:2.1.2")
     testImplementation("com.github.mvysny.dynatest:dynatest:0.24")
 }
 
