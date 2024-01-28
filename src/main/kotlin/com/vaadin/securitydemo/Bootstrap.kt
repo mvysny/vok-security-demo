@@ -1,12 +1,13 @@
 package com.vaadin.securitydemo
 
+import com.gitlab.mvysny.jdbiorm.JdbiOrm
 import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.server.PWA
 import com.vaadin.securitydemo.security.User
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import eu.vaadinonkotlin.VaadinOnKotlin
-import eu.vaadinonkotlin.vokdb.dataSource
+import eu.vaadinonkotlin.vaadin.vokdb.dataSource
 import jakarta.servlet.ServletContextEvent
 import jakarta.servlet.ServletContextListener
 import jakarta.servlet.annotation.WebListener
@@ -61,6 +62,8 @@ class Bootstrap: ServletContextListener {
         log.info("Shutting down")
         log.info("Destroying VaadinOnKotlin")
         VaadinOnKotlin.destroy()
+        log.info("Closing database connections")
+        JdbiOrm.destroy()
         log.info("Shutdown complete")
     }
 

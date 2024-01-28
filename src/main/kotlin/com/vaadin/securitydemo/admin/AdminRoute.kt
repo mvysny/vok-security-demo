@@ -1,15 +1,16 @@
 package com.vaadin.securitydemo.admin
 
 import com.github.mvysny.karibudsl.v10.*
-import com.github.mvysny.vokdataloader.Filter
-import com.github.vokorm.dataloader.dataLoader
+import com.github.vokorm.exp
+import com.gitlab.mvysny.jdbiorm.vaadin.filter.FilterTextField
+import com.gitlab.mvysny.jdbiorm.vaadin.filter.NumberRangePopup
 import com.vaadin.flow.component.textfield.TextField
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
 import com.vaadin.securitydemo.security.User
 import eu.vaadinonkotlin.vaadin.*
-import eu.vaadinonkotlin.vaadin.vokdb.setDataLoader
+import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
 import jakarta.annotation.security.RolesAllowed
 
 /**
@@ -22,21 +23,23 @@ class AdminRoute : KComposite() {
     private val root = ui {
         verticalLayout {
             h1("Administration pages")
-            grid<User> {
-                setDataLoader(User.dataLoader)
+            grid<User>(User.dataProvider) {
                 isExpand = true
 
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
-                val filterBar: FilterBar<User, Filter<User>> = appendHeaderRow().asFilterBar(this)
+                val filterBar: FilterBar<User> = appendHeaderRow().asFilterBar(this)
 
                 columnFor(User::id) {
+                    setSortProperty(User::id.exp)
                     filterBar.forField(NumberRangePopup(), this).inRange()
                 }
                 columnFor(User::username) {
-                    filterBar.forField(TextField(), this).istartsWith()
+                    setSortProperty(User::username.exp)
+                    filterBar.forField(FilterTextField(), this).istartsWith()
                 }
                 columnFor(User::roles) {
-                    filterBar.forField(TextField(), this).istartsWith()
+                    setSortProperty(User::roles.exp)
+                    filterBar.forField(FilterTextField(), this).istartsWith()
                 }
                 addColumn { it.hashedPassword } .setHeader("Hashed Password")
             }
