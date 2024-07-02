@@ -1,9 +1,9 @@
-import com.vaadin.gradle.getBooleanProperty
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
     application
     alias(libs.plugins.vaadin)
 }
@@ -16,7 +16,7 @@ repositories {
 
 tasks.withType<KotlinCompile> {
     // Vaadin 24 requires JDK 17+
-    kotlinOptions.jvmTarget = "17"
+    compilerOptions.jvmTarget = JvmTarget.JVM_17
 }
 
 tasks.withType<Test> {
