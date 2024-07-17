@@ -6,4 +6,4 @@ local.properties
 *.iml
 out
 target
-frontend/generated
+src/main/frontend/generated
