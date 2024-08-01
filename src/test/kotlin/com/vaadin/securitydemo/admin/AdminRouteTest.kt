@@ -4,7 +4,7 @@ import com.github.mvysny.dynatest.DynaTest
 import com.github.mvysny.dynatest.expectThrows
 import com.github.mvysny.kaributesting.v10._expectOne
 import com.github.mvysny.kaributools.navigateTo
-import com.vaadin.flow.router.NotFoundException
+import com.vaadin.flow.router.AccessDeniedException
 import com.vaadin.securitydemo.login
 import com.vaadin.securitydemo.security.LoginRoute
 import com.vaadin.securitydemo.usingApp
@@ -29,7 +29,7 @@ class AdminRouteTest : DynaTest({
     test("User should not see AdminView") {
         login("user")
         // this should not be allowed for security reasons:
-        expectThrows<RuntimeException>("Exceptions handled by HasErrorParameter views are") {
+        expectThrows<AccessDeniedException>("Access is denied by annotations on the view.") {
             navigateTo<AdminRoute>()
         }
     }
