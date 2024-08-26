@@ -31,6 +31,8 @@ class AdminRouteTest : AbstractAppTest() {
         val ex = assertThrows<AccessDeniedException> {
             navigateTo<AdminRoute>()
         }
+        // When Vaadin is in production mode, the error message is suppressed,
+        // to not give potential attacker useful information.
         expect(if (isProductionMode) "" else "Access is denied by annotations on the view.") { ex.message }
     }
 }
