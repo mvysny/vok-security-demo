@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm") version "2.0.20"
     application
     alias(libs.plugins.vaadin)
 }
@@ -52,7 +52,7 @@ dependencies {
     // test support
     testImplementation(libs.karibu.testing)
     testImplementation(libs.dynatest)
-    testRuntimeOnly(libs.junit.platform.launcher)
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 java {
