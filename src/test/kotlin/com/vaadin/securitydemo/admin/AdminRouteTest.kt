@@ -31,6 +31,6 @@ class AdminRouteTest : AbstractAppTest() {
         val ex = assertThrows<AccessDeniedException> {
             navigateTo<AdminRoute>()
         }
-        expect("Access is denied by annotations on the view.") { ex.message }
+        expect(if (isProductionMode) "" else "Access is denied by annotations on the view.") { ex.message }
     }
 }

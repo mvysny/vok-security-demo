@@ -2,6 +2,7 @@ package com.vaadin.securitydemo
 
 import com.github.mvysny.kaributesting.v10.MockVaadin
 import com.github.mvysny.kaributesting.v10.Routes
+import com.vaadin.flow.server.VaadinService
 import com.vaadin.securitydemo.security.User
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
@@ -17,4 +18,6 @@ abstract class AbstractAppTest {
     }
     @BeforeEach fun setupVaadin() { MockVaadin.setup(routes) }
     @AfterEach fun tearDownVaadin() { MockVaadin.tearDown() }
+
+    protected val isProductionMode: Boolean get() = VaadinService.getCurrent().deploymentConfiguration.isProductionMode
 }
