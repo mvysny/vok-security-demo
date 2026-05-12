@@ -1,35 +1,52 @@
 package com.vaadin.securitydemo.security
 
+import com.github.mvysny.ktormvaadin.ActiveEntity
+import com.github.mvysny.ktormvaadin.db
 import com.github.mvysny.vaadinsimplesecurity.HasPassword
-import com.github.vokorm.KEntity
-import com.github.vokorm.findSingleBy
-import com.gitlab.mvysny.jdbiorm.Dao
-import com.gitlab.mvysny.jdbiorm.Table
+import org.ktorm.dsl.eq
+import org.ktorm.entity.Entity
+import org.ktorm.entity.filter
+import org.ktorm.entity.firstOrNull
+import org.ktorm.entity.sequenceOf
+import org.ktorm.schema.Column
+import org.ktorm.schema.Table
+import org.ktorm.schema.long
+import org.ktorm.schema.varchar
+import java.io.Serializable
 
 /**
- * Represents a user. Stored in a database; see [KEntity] and [Accessing Databases](http://www.vaadinonkotlin.eu/databases.html) for more details.
- * Implements the [HasPassword] helper interface which provides password hashing functionality. Remember to set the
- * password via [HasPassword.setPassword] and verify the password via [HasPassword.passwordMatches].
- * @property username user name, unique
- * @property roles comma-separated list of roles
+ * Represents a user. Stored in a database via ktorm. Implements [HasPassword] which provides password hashing.
+ * Set the password via [HasPassword.setPassword] and verify it via [HasPassword.passwordMatches].
+ *
+ * The DB column `hashedPassword` is exposed as the [passwordHash] ktorm-backed property to avoid a JVM signature
+ * clash with [HasPassword.getHashedPassword] / [HasPassword.setHashedPassword] (a Kotlin `var hashedPassword`
+ * would generate methods with the same JVM signature as the inherited Java ones).
  */
-@Table("users")
-data class User(override var id: Long? = null,
-                var username: String = "",
-                private var hashedPassword: String = "",
-                var roles: String = "") : KEntity<Long>, HasPassword {
-    companion object : Dao<User, Long>(User::class.java) {
-        /**
-         * Finds user by his [username]. If there is no such user, returns `null`.
-         */
-        fun findByUsername(username: String): User? = findSingleBy { User::username eq username }
+interface User : ActiveEntity<User>, HasPassword, Serializable {
+    var id: Long?
+    var username: String
+    var passwordHash: String?
+    var roles: String
+
+    override fun getHashedPassword(): String? = passwordHash
+    override fun setHashedPassword(hashedPassword: String?) {
+        passwordHash = hashedPassword
     }
 
-    override fun getHashedPassword(): String = hashedPassword
-
-    override fun setHashedPassword(hashedPassword: String) {
-        this.hashedPassword = hashedPassword
-    }
+    override val table: Table<User> get() = Users
 
     val roleSet: Set<String> get() = roles.split(",").toSet()
+
+    companion object : Entity.Factory<User>() {
+        fun findByUsername(username: String): User? = db {
+            database.sequenceOf(Users).filter { Users.username eq username }.firstOrNull()
+        }
+    }
+}
+
+object Users : Table<User>("users") {
+    val id: Column<Long> = long("id").primaryKey().bindTo { it.id }
+    val username: Column<String> = varchar("username").bindTo { it.username }
+    val passwordHash: Column<String> = varchar("hashedPassword").bindTo { it.passwordHash }
+    val roles: Column<String> = varchar("roles").bindTo { it.roles }
 }

@@ -1,8 +1,8 @@
 package com.vaadin.securitydemo.admin
 
+import com.github.mvysny.kaributesting.v10.MockAccessDeniedException
 import com.github.mvysny.kaributesting.v10._expectOne
 import com.github.mvysny.kaributools.navigateTo
-import com.vaadin.flow.router.AccessDeniedException
 import com.vaadin.securitydemo.AbstractAppTest
 import com.vaadin.securitydemo.login
 import com.vaadin.securitydemo.security.LoginRoute
@@ -28,7 +28,7 @@ class AdminRouteTest : AbstractAppTest() {
     @Test fun `User should not see AdminView`() {
         login("user")
         // this should not be allowed for security reasons:
-        val ex = assertThrows<AccessDeniedException> {
+        val ex = assertThrows<MockAccessDeniedException> {
             navigateTo<AdminRoute>()
         }
         // When Vaadin is in production mode, the error message is suppressed,

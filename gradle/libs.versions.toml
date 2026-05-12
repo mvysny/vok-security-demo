@@ -1,21 +1,22 @@
 [versions]
-vaadin = "24.9.5"
+vaadin = "25.1.5"
 # https://repo1.maven.org/maven2/org/slf4j/slf4j-api/
 slf4j = "2.0.17"
-vok = "0.18.1"
+vok = "0.19.0"
 
 [libraries]
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
-vaadin-boot = "com.github.mvysny.vaadin-boot:vaadin-boot:13.3"
+vaadin-boot = "com.github.mvysny.vaadin-boot:vaadin-boot:13.7"
 vaadin-core = { module = "com.vaadin:vaadin-core", version.ref = "vaadin" }
-karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.4.2"
-flyway = "org.flywaydb:flyway-core:10.15.2"
+karibu-testing = "com.github.mvysny.kaributesting:karibu-testing-v24:2.7.0"
+karibu-dsl-v23 = "com.github.mvysny.karibudsl:karibu-dsl-v23:2.6.0"
+flyway = "org.flywaydb:flyway-core:11.18.0"
 h2 = "com.h2database:h2:2.2.224"
-hikaricp = "com.zaxxer:HikariCP:5.1.0"
-junit = "org.junit.jupiter:junit-jupiter-engine:5.11.0"
+hikaricp = "com.zaxxer:HikariCP:7.0.2"
+junit = "org.junit.jupiter:junit-jupiter-engine:6.0.3"
 vok-db = { module = "eu.vaadinonkotlin:vok-framework-vokdb", version.ref = "vok" }
-vaadin-security-simple = "com.github.mvysny.vaadin-simple-security:vaadin-simple-security:1.0"
+vaadin-security-simple = "com.github.mvysny.vaadin-simple-security:vaadin-simple-security:1.1"
 
 [plugins]
 vaadin = { id = "com.vaadin", version.ref = "vaadin" }

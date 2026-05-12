@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.3.20"
+    kotlin("jvm") version "2.3.21"
     application
     alias(libs.plugins.vaadin)
 }
@@ -15,8 +15,8 @@ repositories {
 }
 
 tasks.withType<KotlinCompile> {
-    // Vaadin 24 requires JDK 17+
-    compilerOptions.jvmTarget = JvmTarget.JVM_17
+    // Vaadin 25 requires JDK 21+
+    compilerOptions.jvmTarget = JvmTarget.JVM_21
 }
 
 tasks.withType<Test> {
@@ -36,6 +36,7 @@ dependencies {
         }
     }
     implementation(libs.vok.db)
+    implementation(libs.karibu.dsl.v23)
     implementation(libs.vaadin.security.simple)
     implementation(libs.vaadin.boot)
 
@@ -55,9 +56,9 @@ dependencies {
 }
 
 java {
-    // Vaadin 24 requires JDK 17+
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    // Vaadin 25 requires JDK 21+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 application {

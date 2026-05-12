@@ -1,6 +1,5 @@
 package com.vaadin.securitydemo
 
-import com.gitlab.mvysny.jdbiorm.JdbiOrm
 import com.vaadin.flow.component.page.AppShellConfigurator
 import com.vaadin.flow.server.PWA
 import com.vaadin.securitydemo.security.User
@@ -30,7 +29,9 @@ class Bootstrap: ServletContextListener {
         // 2. make sure to include the database driver into the classpath, by adding a dependency on the driver into the build.gradle file.
         val cfg = HikariConfig().apply {
             driverClassName = Driver::class.java.name
-            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+            // DATABASE_TO_UPPER=FALSE keeps identifier case so ktorm's quoted "users", "hashedPassword", etc.
+            // match the Flyway DDL exactly (H2 otherwise folds unquoted names to upper case).
+            jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=FALSE"
             username = "sa"
             password = ""
         }
@@ -49,8 +50,16 @@ class Bootstrap: ServletContextListener {
 
         // setup security
         // security interceptor is configured in AppServiceInitListener
-        User(username = "admin", roles = "ROLE_ADMIN,ROLE_USER").apply { setPassword("admin"); save() }
-        User(username = "user", roles = "ROLE_USER").apply { setPassword("user"); save() }
+        User {
+            username = "admin"
+            roles = "ROLE_ADMIN,ROLE_USER"
+            setPassword("admin")
+        }.save()
+        User {
+            username = "user"
+            roles = "ROLE_USER"
+            setPassword("user")
+        }.save()
 
         log.info("Initialization complete")
     } catch (t: Throwable) {
@@ -62,8 +71,6 @@ class Bootstrap: ServletContextListener {
         log.info("Shutting down")
         log.info("Destroying VaadinOnKotlin")
         VaadinOnKotlin.destroy()
-        log.info("Closing database connections")
-        JdbiOrm.destroy()
         log.info("Shutdown complete")
     }
 

@@ -1,18 +1,20 @@
 package com.vaadin.securitydemo.admin
 
 import com.github.mvysny.karibudsl.v10.*
-import com.github.vokorm.exp
-import com.gitlab.mvysny.jdbiorm.condition.Condition
-import com.gitlab.mvysny.jdbiorm.vaadin.filter.FilterTextField
-import com.gitlab.mvysny.jdbiorm.vaadin.filter.NumberRangePopup
-import com.vaadin.flow.component.textfield.TextField
+import com.github.mvysny.ktormvaadin.and
+import com.github.mvysny.ktormvaadin.dataProvider
+import com.github.mvysny.ktormvaadin.e
+import com.github.mvysny.ktormvaadin.filter.FilterTextField
+import com.github.mvysny.ktormvaadin.filter.NumberRangePopup
+import com.github.mvysny.ktormvaadin.filter.between
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.securitydemo.MainLayout
 import com.vaadin.securitydemo.security.User
-import eu.vaadinonkotlin.vaadin.*
-import eu.vaadinonkotlin.vaadin.vokdb.dataProvider
+import com.vaadin.securitydemo.security.Users
 import jakarta.annotation.security.RolesAllowed
+import org.ktorm.schema.ColumnDeclaring
+import org.ktorm.support.postgresql.ilike
 
 /**
  * The Administration view which only administrators may access. The administrator should be able to see/edit the list of users.
@@ -21,7 +23,7 @@ import jakarta.annotation.security.RolesAllowed
 @PageTitle("Administration")
 @RolesAllowed("ROLE_ADMIN")
 class AdminRoute : KComposite() {
-    private val dataProvider = User.dataProvider
+    private val dataProvider = Users.dataProvider
     private val idFilter = NumberRangePopup()
     private val usernameFilter = FilterTextField()
     private val rolesFilter = FilterTextField()
@@ -35,18 +37,15 @@ class AdminRoute : KComposite() {
                 appendHeaderRow() // workaround for https://github.com/vaadin/vaadin-grid-flow/issues/912
                 val filterBar = appendHeaderRow()
 
-                columnFor(User::id) {
-                    setSortProperty(User::id.exp)
+                columnFor(User::id, key = Users.id.e.key) {
                     idFilter.addValueChangeListener { updateFilter() }
                     filterBar.getCell(this).component = idFilter
                 }
-                columnFor(User::username) {
-                    setSortProperty(User::username.exp)
+                columnFor(User::username, key = Users.username.e.key) {
                     usernameFilter.addValueChangeListener { updateFilter() }
                     filterBar.getCell(this).component = usernameFilter
                 }
-                columnFor(User::roles) {
-                    setSortProperty(User::roles.exp)
+                columnFor(User::roles, key = Users.roles.e.key) {
                     rolesFilter.addValueChangeListener { updateFilter() }
                     filterBar.getCell(this).component = rolesFilter
                 }
@@ -56,16 +55,14 @@ class AdminRoute : KComposite() {
     }
 
     private fun updateFilter() {
-        var c: Condition = Condition.NO_CONDITION
-        if (!idFilter.isEmpty) {
-            c = c.and(idFilter.value.asLongInterval().contains(User::id.exp))
-        }
+        val conditions = mutableListOf<ColumnDeclaring<Boolean>?>()
+        conditions += Users.id.between(idFilter.value.asLongInterval())
         if (usernameFilter.value.isNotBlank()) {
-            c = c.and(User::username.exp.startsWithIgnoreCase(usernameFilter.value))
+            conditions += Users.username.ilike("${usernameFilter.value.trim()}%")
         }
         if (rolesFilter.value.isNotBlank()) {
-            c = c.and(User::roles.exp.startsWithIgnoreCase(rolesFilter.value))
+            conditions += Users.roles.ilike("${rolesFilter.value.trim()}%")
         }
-        dataProvider.filter = c
+        dataProvider.setFilter(conditions.and())
     }
 }

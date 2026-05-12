@@ -13,10 +13,14 @@ import com.vaadin.securitydemo.security.loginService
 import com.vaadin.securitydemo.user.UserRoute
 import com.vaadin.securitydemo.welcome.WelcomeRoute
 import eu.vaadinonkotlin.vaadin.Session
+import jakarta.annotation.security.PermitAll
 
 /**
  * The main layout. It uses the app-layout component which makes the app look like an Android Material app.
+ * Vaadin 25 requires parent layouts to declare their own access rules; child routes' annotations no longer
+ * grant access through the layout chain.
  */
+@PermitAll
 class MainLayout : KComposite(), RouterLayout {
 
     private lateinit var contentPane: Div
