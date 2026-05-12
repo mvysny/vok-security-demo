@@ -24,6 +24,7 @@ tasks.withType<Test> {
     testLogging {
         // to see the stacktraces of failed tests in the CI console.
         exceptionFormat = TestExceptionFormat.FULL
+        showCauses = true
     }
 }
 
