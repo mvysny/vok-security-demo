@@ -8,3 +8,7 @@ out
 target
 src/main/frontend/generated
 .kotlin
+.settings
+bin
+.classpath
+.project
